@@ -1,0 +1,746 @@
+[
+    {
+      "nombre": "Squirtle",
+      "descripcion": "Una pequeña tortuga que dispara agua a presión.",
+      "tipo": "Agua",
+      "puntos_vida": 300,
+      "probabilidad_critico": 10,
+      "bonificacion_critico": 45,
+      "ataques": [
+        {
+          "nombre": "Pistola Agua",
+          "descripcion": "Un chorro de agua rápido y preciso.",
+          "costo_energia": 2,
+          "probabilidad_exito": 90,
+          "puntos_daño": 30,
+          "efecto_elemental": "Agua",
+          "efecto_especial": "ninguno"
+        },
+        {
+          "nombre": "Burbuja Escudo",
+          "descripcion": "Crea una burbuja protectora que ataca levemente al rival.",
+          "costo_energia": 2,
+          "probabilidad_exito": 95,
+          "puntos_daño": 20,
+          "efecto_elemental": "Agua",
+          "efecto_especial": "reducir_daño_siguiente_ataque"
+        },
+        {
+          "nombre": "Golpe Caparazón",
+          "descripcion": "Un potente golpe con el caparazón.",
+          "costo_energia": 3,
+          "probabilidad_exito": 80,
+          "puntos_daño": 50,
+          "efecto_elemental": "ninguno",
+          "efecto_especial": "ninguno"
+        }
+      ]
+    },
+    {
+      "nombre": "Psyduck",
+      "descripcion": "Padece de dolores de cabeza que desatan sus poderes psíquicos.",
+      "tipo": "Agua",
+      "puntos_vida": 320,
+      "probabilidad_critico": 8,
+      "bonificacion_critico": 40,
+      "ataques": [
+        {
+          "nombre": "Confusión",
+          "descripcion": "Un ataque psíquico que puede desorientar al enemigo.",
+          "costo_energia": 2,
+          "probabilidad_exito": 85,
+          "puntos_daño": 35,
+          "efecto_elemental": "ninguno",
+          "efecto_especial": "posible_confusion"
+        },
+        {
+          "nombre": "Chorro Psicoacuático",
+          "descripcion": "Canaliza energía mental en un chorro de agua.",
+          "costo_energia": 3,
+          "probabilidad_exito": 75,
+          "puntos_daño": 60,
+          "efecto_elemental": "Agua",
+          "efecto_especial": "ninguno"
+        },
+        {
+          "nombre": "Chapoteo Veloz",
+          "descripcion": "Una carga rápida salpicando agua por todas partes.",
+          "costo_energia": 1,
+          "probabilidad_exito": 95,
+          "puntos_daño": 20,
+          "efecto_elemental": "Agua",
+          "efecto_especial": "ninguno"
+        }
+      ]
+    },
+    {
+      "nombre": "Staryu",
+      "descripcion": "Una estrella de mar que se regenera y lanza rayos de luz.",
+      "tipo": "Agua",
+      "puntos_vida": 270,
+      "probabilidad_critico": 10,
+      "bonificacion_critico": 50,
+      "ataques": [
+        {
+          "nombre": "Rayo Burbuja",
+          "descripcion": "Dispara burbujas que pueden reducir la velocidad enemiga.",
+          "costo_energia": 2,
+          "probabilidad_exito": 85,
+          "puntos_daño": 25,
+          "efecto_elemental": "Agua",
+          "efecto_especial": "ralentizar"
+        },
+        {
+          "nombre": "Recuperación Acuática",
+          "descripcion": "Restaura parte de la vitalidad del pokémon a costa de su energía.",
+          "costo_energia": 3,
+          "probabilidad_exito": 100,
+          "puntos_daño": 0,
+          "efecto_elemental": "Agua",
+          "efecto_especial": "restaurar_vida"
+        },
+        {
+          "nombre": "Danza Estelar",
+          "descripcion": "Un giro elegante que golpea repetidamente al rival.",
+          "costo_energia": 3,
+          "probabilidad_exito": 70,
+          "puntos_daño": 60,
+          "efecto_elemental": "Agua",
+          "efecto_especial": "ninguno"
+        }
+      ]
+    },
+    {
+      "nombre": "Poliwag",
+      "descripcion": "Con su cuerpo esférico y su cola, se mueve con gran soltura en el agua.",
+      "tipo": "Agua",
+      "puntos_vida": 350,
+      "probabilidad_critico": 7,
+      "bonificacion_critico": 45,
+      "ataques": [
+        {
+          "nombre": "Burbujas Hipnóticas",
+          "descripcion": "Burbujas que podrían adormecer al oponente.",
+          "costo_energia": 1,
+          "probabilidad_exito": 80,
+          "puntos_daño": 20,
+          "efecto_elemental": "Agua",
+          "efecto_especial": "posible_somnolencia"
+        },
+        {
+          "nombre": "Doble Golpe Acuático",
+          "descripcion": "Golpea dos veces con fuerza de agua.",
+          "costo_energia": 2,
+          "probabilidad_exito": 90,
+          "puntos_daño": 30,
+          "efecto_elemental": "Agua",
+          "efecto_especial": "ninguno"
+        },
+        {
+          "nombre": "Ola Brava",
+          "descripcion": "Invoca una ola poderosa que arrasa con el rival.",
+          "costo_energia": 3,
+          "probabilidad_exito": 75,
+          "puntos_daño": 60,
+          "efecto_elemental": "Agua",
+          "efecto_especial": "ninguno"
+        }
+      ]
+    },
+    {
+      "nombre": "Tentacool",
+      "descripcion": "Sus tentáculos desprenden un fluido venenoso.",
+      "tipo": "Agua",
+      "puntos_vida": 260,
+      "probabilidad_critico": 5,
+      "bonificacion_critico": 50,
+      "ataques": [
+        {
+          "nombre": "Ácido Marino",
+          "descripcion": "Un ácido corrosivo que reduce la defensa del rival.",
+          "costo_energia": 2,
+          "probabilidad_exito": 85,
+          "puntos_daño": 35,
+          "efecto_elemental": "Agua",
+          "efecto_especial": "reducir_defensa"
+        },
+        {
+          "nombre": "Golpe Tóxico",
+          "descripcion": "Golpe que puede envenenar al rival.",
+          "costo_energia": 3,
+          "probabilidad_exito": 80,
+          "puntos_daño": 50,
+          "efecto_elemental": "Agua",
+          "efecto_especial": "posible_envenenamiento"
+        },
+        {
+          "nombre": "Salpicón Veloz",
+          "descripcion": "Tentaculos que azotan rápidamente al enemigo.",
+          "costo_energia": 1,
+          "probabilidad_exito": 90,
+          "puntos_daño": 20,
+          "efecto_elemental": "Agua",
+          "efecto_especial": "ninguno"
+        }
+      ]
+    },
+  
+    {
+      "nombre": "Bulbasaur",
+      "descripcion": "Una semilla planta en el lomo, crece junto con el pokémon.",
+      "tipo": "Hierba",
+      "puntos_vida": 310,
+      "probabilidad_critico": 10,
+      "bonificacion_critico": 50,
+      "ataques": [
+        {
+          "nombre": "Drenaje Semilla",
+          "descripcion": "Roba algo de la vitalidad del rival para curarse.",
+          "costo_energia": 2,
+          "probabilidad_exito": 85,
+          "puntos_daño": 25,
+          "efecto_elemental": "Hierba",
+          "efecto_especial": "robar_vida"
+        },
+        {
+          "nombre": "Látigo Cepa",
+          "descripcion": "Azota con sus cepas para infligir daño.",
+          "costo_energia": 1,
+          "probabilidad_exito": 95,
+          "puntos_daño": 20,
+          "efecto_elemental": "Hierba",
+          "efecto_especial": "ninguno"
+        },
+        {
+          "nombre": "Hoja Afilada",
+          "descripcion": "Proyecta hojas con alta capacidad de corte.",
+          "costo_energia": 3,
+          "probabilidad_exito": 80,
+          "puntos_daño": 55,
+          "efecto_elemental": "Hierba",
+          "efecto_especial": "ninguno"
+        }
+      ]
+    },
+    {
+      "nombre": "Oddish",
+      "descripcion": "Se parece a una planta ordinaria, pero puede moverse y atacar.",
+      "tipo": "Hierba",
+      "puntos_vida": 280,
+      "probabilidad_critico": 7,
+      "bonificacion_critico": 45,
+      "ataques": [
+        {
+          "nombre": "Polvo Veneno",
+          "descripcion": "Esparce un polvo que envenena al oponente.",
+          "costo_energia": 1,
+          "probabilidad_exito": 85,
+          "puntos_daño": 15,
+          "efecto_elemental": "Hierba",
+          "efecto_especial": "envenenamiento"
+        },
+        {
+          "nombre": "Absorber",
+          "descripcion": "Restaura vida drenando energía del rival.",
+          "costo_energia": 2,
+          "probabilidad_exito": 90,
+          "puntos_daño": 25,
+          "efecto_elemental": "Hierba",
+          "efecto_especial": "robar_vida"
+        },
+        {
+          "nombre": "Rayo Solar",
+          "descripcion": "Ataque poderoso que requiere energía solar concentrada.",
+          "costo_energia": 3,
+          "probabilidad_exito": 70,
+          "puntos_daño": 60,
+          "efecto_elemental": "Hierba",
+          "efecto_especial": "ninguno"
+        }
+      ]
+    },
+    {
+      "nombre": "Bellsprout",
+      "descripcion": "Un pokémon en forma de planta carnívora con un tallo flexible.",
+      "tipo": "Hierba",
+      "puntos_vida": 290,
+      "probabilidad_critico": 8,
+      "bonificacion_critico": 30,
+      "ataques": [
+        {
+          "nombre": "Ácido",
+          "descripcion": "Un ataque corrosivo que disminuye la defensa rival.",
+          "costo_energia": 2,
+          "probabilidad_exito": 85,
+          "puntos_daño": 35,
+          "efecto_elemental": "Hierba",
+          "efecto_especial": "reducir_defensa"
+        },
+        {
+          "nombre": "Crecimiento",
+          "descripcion": "Aumenta temporalmente la fuerza de ataque del pokémon.",
+          "costo_energia": 1,
+          "probabilidad_exito": 100,
+          "puntos_daño": 0,
+          "efecto_elemental": "Hierba",
+          "efecto_especial": "incrementar_ataque"
+        },
+        {
+          "nombre": "Golpe Liana",
+          "descripcion": "Un latigazo potente usando su tallo principal.",
+          "costo_energia": 3,
+          "probabilidad_exito": 80,
+          "puntos_daño": 50,
+          "efecto_elemental": "Hierba",
+          "efecto_especial": "ninguno"
+        }
+      ]
+    },
+    {
+      "nombre": "Exeggcute",
+      "descripcion": "Seis huevos con conciencia colectiva, maneja poderes psíquicos.",
+      "tipo": "Hierba",
+      "puntos_vida": 255,
+      "probabilidad_critico": 5,
+      "bonificacion_critico": 35,
+      "ataques": [
+        {
+          "nombre": "Somnífero",
+          "descripcion": "Induce al rival a un estado de sueño.",
+          "costo_energia": 1,
+          "probabilidad_exito": 80,
+          "puntos_daño": 0,
+          "efecto_elemental": "Hierba",
+          "efecto_especial": "dormir"
+        },
+        {
+          "nombre": "Confusión Colectiva",
+          "descripcion": "Combina energías psíquicas para confundir al oponente.",
+          "costo_energia": 2,
+          "probabilidad_exito": 85,
+          "puntos_daño": 30,
+          "efecto_elemental": "Hierba",
+          "efecto_especial": "posible_confusion"
+        },
+        {
+          "nombre": "Bomba Semilla",
+          "descripcion": "Proyecta semillas explosivas con gran impacto.",
+          "costo_energia": 3,
+          "probabilidad_exito": 80,
+          "puntos_daño": 50,
+          "efecto_elemental": "Hierba",
+          "efecto_especial": "ninguno"
+        }
+      ]
+    },
+    {
+      "nombre": "Tangela",
+      "descripcion": "Un conjunto de lianas enredadas que se mueven con libertad.",
+      "tipo": "Hierba",
+      "puntos_vida": 350,
+      "probabilidad_critico": 10,
+      "bonificacion_critico": 50,
+      "ataques": [
+        {
+          "nombre": "Enredadera",
+          "descripcion": "Atrapa al rival en lianas para inmovilizarlo parcialmente.",
+          "costo_energia": 2,
+          "probabilidad_exito": 85,
+          "puntos_daño": 25,
+          "efecto_elemental": "Hierba",
+          "efecto_especial": "reducir_velocidad"
+        },
+        {
+          "nombre": "Polvo Paralizante",
+          "descripcion": "Esporas que pueden paralizar al oponente.",
+          "costo_energia": 1,
+          "probabilidad_exito": 80,
+          "puntos_daño": 10,
+          "efecto_elemental": "Hierba",
+          "efecto_especial": "paralizar"
+        },
+        {
+          "nombre": "Latigazo Feroz",
+          "descripcion": "Usa varias lianas para asestar un golpe contundente.",
+          "costo_energia": 3,
+          "probabilidad_exito": 75,
+          "puntos_daño": 60,
+          "efecto_elemental": "Hierba",
+          "efecto_especial": "ninguno"
+        }
+      ]
+    },
+  
+    {
+      "nombre": "Charmander",
+      "descripcion": "Una lagartija de fuego cuya cola arde constantemente.",
+      "tipo": "Fuego",
+      "puntos_vida": 280,
+      "probabilidad_critico": 10,
+      "bonificacion_critico": 50,
+      "ataques": [
+        {
+          "nombre": "Ascuas",
+          "descripcion": "Lanza pequeñas brasas para dañar y quemar.",
+          "costo_energia": 1,
+          "probabilidad_exito": 90,
+          "puntos_daño": 25,
+          "efecto_elemental": "Fuego",
+          "efecto_especial": "posible_quemadura"
+        },
+        {
+          "nombre": "Garra Dragón",
+          "descripcion": "Desgarra al oponente con fuerza dracónica.",
+          "costo_energia": 2,
+          "probabilidad_exito": 85,
+          "puntos_daño": 35,
+          "efecto_elemental": "Fuego",
+          "efecto_especial": "ninguno"
+        },
+        {
+          "nombre": "Lanzallamas",
+          "descripcion": "Expulsa una fuerte llamarada.",
+          "costo_energia": 3,
+          "probabilidad_exito": 80,
+          "puntos_daño": 60,
+          "efecto_elemental": "Fuego",
+          "efecto_especial": "posible_quemadura"
+        }
+      ]
+    },
+    {
+      "nombre": "Vulpix",
+      "descripcion": "Un zorro con una cola llameante y elegante.",
+      "tipo": "Fuego",
+      "puntos_vida": 270,
+      "probabilidad_critico": 8,
+      "bonificacion_critico": 40,
+      "ataques": [
+        {
+          "nombre": "Fuego Fatuo",
+          "descripcion": "Llamas fantasmales que pueden debilitar al rival.",
+          "costo_energia": 1,
+          "probabilidad_exito": 90,
+          "puntos_daño": 15,
+          "efecto_elemental": "Fuego",
+          "efecto_especial": "posible_quemadura"
+        },
+        {
+          "nombre": "Ataque Rápido",
+          "descripcion": "Embiste con rapidez para tomar la delantera.",
+          "costo_energia": 1,
+          "probabilidad_exito": 95,
+          "puntos_daño": 20,
+          "efecto_elemental": "Fuego",
+          "efecto_especial": "ninguno"
+        },
+        {
+          "nombre": "Onda Ígnea",
+          "descripcion": "Libera una onda de calor que abrasa al oponente.",
+          "costo_energia": 3,
+          "probabilidad_exito": 75,
+          "puntos_daño": 55,
+          "efecto_elemental": "Fuego",
+          "efecto_especial": "ninguno"
+        }
+      ]
+    },
+    {
+      "nombre": "Growlithe",
+      "descripcion": "Un perro fiel con un corazón ardiente y leal.",
+      "tipo": "Fuego",
+      "puntos_vida": 330,
+      "probabilidad_critico": 5,
+      "bonificacion_critico": 40,
+      "ataques": [
+        {
+          "nombre": "Mordisco Ígneo",
+          "descripcion": "Un mordisco con brasas ardientes.",
+          "costo_energia": 2,
+          "probabilidad_exito": 85,
+          "puntos_daño": 35,
+          "efecto_elemental": "Fuego",
+          "efecto_especial": "posible_quemadura"
+        },
+        {
+          "nombre": "Colmillo Trueno",
+          "descripcion": "Descargas eléctricas mezcladas con fuego.",
+          "costo_energia": 2,
+          "probabilidad_exito": 80,
+          "puntos_daño": 40,
+          "efecto_elemental": "Fuego",
+          "efecto_especial": "posible_paralisis"
+        },
+        {
+          "nombre": "Bola de Fuego",
+          "descripcion": "Concentra la llama y la lanza como esfera.",
+          "costo_energia": 3,
+          "probabilidad_exito": 75,
+          "puntos_daño": 60,
+          "efecto_elemental": "Fuego",
+          "efecto_especial": "ninguno"
+        }
+      ]
+    },
+    {
+      "nombre": "Ponyta",
+      "descripcion": "Un caballo de fuego con crines llameantes.",
+      "tipo": "Fuego",
+      "puntos_vida": 310,
+      "probabilidad_critico": 9,
+      "bonificacion_critico": 45,
+      "ataques": [
+        {
+          "nombre": "Embestida Llameante",
+          "descripcion": "Una carga envolviendo al rival en fuego.",
+          "costo_energia": 2,
+          "probabilidad_exito": 85,
+          "puntos_daño": 30,
+          "efecto_elemental": "Fuego",
+          "efecto_especial": "ninguno"
+        },
+        {
+          "nombre": "Pisotón Ígneo",
+          "descripcion": "Patea con fuego ardiente en sus cascos.",
+          "costo_energia": 1,
+          "probabilidad_exito": 90,
+          "puntos_daño": 25,
+          "efecto_elemental": "Fuego",
+          "efecto_especial": "posible_quemadura"
+        },
+        {
+          "nombre": "Llama Salvaje",
+          "descripcion": "Libera toda su furia en una llamarada intensa.",
+          "costo_energia": 3,
+          "probabilidad_exito": 70,
+          "puntos_daño": 60,
+          "efecto_elemental": "Fuego",
+          "efecto_especial": "ninguno"
+        }
+      ]
+    },
+    {
+      "nombre": "Magmar",
+      "descripcion": "Su cuerpo arde a temperaturas extremas y manipula el fuego.",
+      "tipo": "Fuego",
+      "puntos_vida": 350,
+      "probabilidad_critico": 10,
+      "bonificacion_critico": 50,
+      "ataques": [
+        {
+          "nombre": "Puño Fuego",
+          "descripcion": "Golpe de puño envuelto en llamas.",
+          "costo_energia": 2,
+          "probabilidad_exito": 85,
+          "puntos_daño": 40,
+          "efecto_elemental": "Fuego",
+          "efecto_especial": "posible_quemadura"
+        },
+        {
+          "nombre": "Llamarada",
+          "descripcion": "Una llamarada masiva que puede abrasar todo el campo.",
+          "costo_energia": 3,
+          "probabilidad_exito": 70,
+          "puntos_daño": 70,
+          "efecto_elemental": "Fuego",
+          "efecto_especial": "ninguno"
+        },
+        {
+          "nombre": "Golpe Calcinante",
+          "descripcion": "Suelta una descarga de calor directo al oponente.",
+          "costo_energia": 2,
+          "probabilidad_exito": 80,
+          "puntos_daño": 35,
+          "efecto_elemental": "Fuego",
+          "efecto_especial": "ninguno"
+        }
+      ]
+    },
+  
+    {
+      "nombre": "Rattata",
+      "descripcion": "Un roedor veloz y astuto con grandes incisivos.",
+      "tipo": "Neutro",
+      "puntos_vida": 250,
+      "probabilidad_critico": 8,
+      "bonificacion_critico": 40,
+      "ataques": [
+        {
+          "nombre": "Mordisco",
+          "descripcion": "Una mordida rápida para dañar al rival.",
+          "costo_energia": 1,
+          "probabilidad_exito": 95,
+          "puntos_daño": 20,
+          "efecto_elemental": "Neutro",
+          "efecto_especial": "ninguno"
+        },
+        {
+          "nombre": "Ataque Rápido",
+          "descripcion": "Velocidad pura para golpear antes de que el rival reaccione.",
+          "costo_energia": 1,
+          "probabilidad_exito": 90,
+          "puntos_daño": 25,
+          "efecto_elemental": "Neutro",
+          "efecto_especial": "ninguno"
+        },
+        {
+          "nombre": "Hiperrratata",
+          "descripcion": "Una acometida furiosa sin pensar en defensas.",
+          "costo_energia": 3,
+          "probabilidad_exito": 80,
+          "puntos_daño": 55,
+          "efecto_elemental": "Neutro",
+          "efecto_especial": "ninguno"
+        }
+      ]
+    },
+    {
+      "nombre": "Meowth",
+      "descripcion": "Adora las monedas. Sus garras son rápidas y filosas.",
+      "tipo": "Neutro",
+      "puntos_vida": 270,
+      "probabilidad_critico": 10,
+      "bonificacion_critico": 50,
+      "ataques": [
+        {
+          "nombre": "Arañazo",
+          "descripcion": "Un rasguño veloz y preciso.",
+          "costo_energia": 1,
+          "probabilidad_exito": 95,
+          "puntos_daño": 20,
+          "efecto_elemental": "Neutro",
+          "efecto_especial": "ninguno"
+        },
+        {
+          "nombre": "Día de Pago",
+          "descripcion": "Golpea y esparce monedas, puede distraer al enemigo.",
+          "costo_energia": 2,
+          "probabilidad_exito": 90,
+          "puntos_daño": 30,
+          "efecto_elemental": "Neutro",
+          "efecto_especial": "ninguno"
+        },
+        {
+          "nombre": "Zarpa Brutal",
+          "descripcion": "Un ataque contundente con las garras extendidas.",
+          "costo_energia": 3,
+          "probabilidad_exito": 80,
+          "puntos_daño": 50,
+          "efecto_elemental": "Neutro",
+          "efecto_especial": "ninguno"
+        }
+      ]
+    },
+    {
+      "nombre": "Eevee",
+      "descripcion": "Un pokémon con capacidades genéticas únicas para evolucionar.",
+      "tipo": "Neutro",
+      "puntos_vida": 340,
+      "probabilidad_critico": 7,
+      "bonificacion_critico": 35,
+      "ataques": [
+        {
+          "nombre": "Placaje",
+          "descripcion": "Arremete contra el oponente con su cuerpo.",
+          "costo_energia": 1,
+          "probabilidad_exito": 95,
+          "puntos_daño": 25,
+          "efecto_elemental": "Neutro",
+          "efecto_especial": "ninguno"
+        },
+        {
+          "nombre": "Refuerzo Evolutivo",
+          "descripcion": "Concentra su poder latente para aumentar su ataque temporalmente.",
+          "costo_energia": 2,
+          "probabilidad_exito": 100,
+          "puntos_daño": 0,
+          "efecto_elemental": "Neutro",
+          "efecto_especial": "incrementar_ataque"
+        },
+        {
+          "nombre": "Golpe Rápido",
+          "descripcion": "Ataca fugazmente para tomar por sorpresa al rival.",
+          "costo_energia": 2,
+          "probabilidad_exito": 90,
+          "puntos_daño": 30,
+          "efecto_elemental": "Neutro",
+          "efecto_especial": "ninguno"
+        }
+      ]
+    },
+    {
+      "nombre": "Ditto",
+      "descripcion": "Puede transformarse en cualquier pokémon que observe.",
+      "tipo": "Neutro",
+      "puntos_vida": 280,
+      "probabilidad_critico": 5,
+      "bonificacion_critico": 30,
+      "ataques": [
+        {
+          "nombre": "Transformación",
+          "descripcion": "Se transforma copiando los ataques del rival.",
+          "costo_energia": 3,
+          "probabilidad_exito": 100,
+          "puntos_daño": 0,
+          "efecto_elemental": "Neutro",
+          "efecto_especial": "copiar_ataques"
+        },
+        {
+          "nombre": "Golpe Mínimo",
+          "descripcion": "Un suave impacto, se adapta al rival.",
+          "costo_energia": 1,
+          "probabilidad_exito": 90,
+          "puntos_daño": 15,
+          "efecto_elemental": "Neutro",
+          "efecto_especial": "ninguno"
+        },
+        {
+          "nombre": "Reserva Genética",
+          "descripcion": "Aumenta sus capacidades para el siguiente ataque.",
+          "costo_energia": 1,
+          "probabilidad_exito": 100,
+          "puntos_daño": 0,
+          "efecto_elemental": "Neutro",
+          "efecto_especial": "incrementar_ataque"
+        }
+      ]
+    },
+    {
+      "nombre": "Porygon",
+      "descripcion": "Un pokémon virtual capaz de entrar en sistemas informáticos.",
+      "tipo": "Neutro",
+      "puntos_vida": 350,
+      "probabilidad_critico": 10,
+      "bonificacion_critico": 50,
+      "ataques": [
+        {
+          "nombre": "Descarga Digital",
+          "descripcion": "Un pulso electrónico que puede aturdir.",
+          "costo_energia": 2,
+          "probabilidad_exito": 85,
+          "puntos_daño": 30,
+          "efecto_elemental": "Neutro",
+          "efecto_especial": "posible_paralisis"
+        },
+        {
+          "nombre": "Conversión",
+          "descripcion": "Modifica su tipo para adaptarse al rival.",
+          "costo_energia": 3,
+          "probabilidad_exito": 100,
+          "puntos_daño": 0,
+          "efecto_elemental": "Neutro",
+          "efecto_especial": "cambiar_tipo"
+        },
+        {
+          "nombre": "Triataque",
+          "descripcion": "Lanza tres ráfagas de energía con efectos diversos.",
+          "costo_energia": 3,
+          "probabilidad_exito": 80,
+          "puntos_daño": 60,
+          "efecto_elemental": "Neutro",
+          "efecto_especial": "ninguno"
+        }
+      ]
+    }
+  ]
+  
