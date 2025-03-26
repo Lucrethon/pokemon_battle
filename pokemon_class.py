@@ -21,7 +21,7 @@ def attack(success_rate, attack_damage, crit_rate, crit_damage, pokemon1: Pokemo
     
     if value <= success_rate: 
         pokemon1.energy_points = pokemon1.energy_points - energy_cost
-        print("Ataque exitoso")
+        print("El ataque si impacto")
         
         if value <= crit_rate: 
             pokemon2.HP = pokemon2.HP - attack_damage - crit_damage
