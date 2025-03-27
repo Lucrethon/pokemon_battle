@@ -82,3 +82,6 @@ def rest(pokemon: Pokemon):
 
 
 
+
+
+
