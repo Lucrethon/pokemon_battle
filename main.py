@@ -48,7 +48,7 @@ def pokemon_duel():
         print("3. Comenzar juego")
         print("4. Salir")
         
-        select = numberInput("\Elije una de las 4 opciones: ")
+        select = numberInput("\nElije una de las 4 opciones: ")
         
         match select: 
             
@@ -69,7 +69,7 @@ def pokemon_duel():
                 print("\nEl primero en comenzar el duelo es... ")
                 
                 primer_turno = random.choice(jugadores)
-                print(primer_turno)
+                print(f"\n¡{primer_turno}!")
                 
                 #valor_si_verdadero if condición else valor_si_falso
                 segundo_turno = jugadores[0] if primer_turno == jugadores[1] else jugadores[1]
@@ -78,47 +78,43 @@ def pokemon_duel():
                 
                 while True: 
                     
-                    print(primer_turno)
+                    print(f"\n{primer_turno}:")
                     
-                    select = numberInput(
-                        """\n1. Atacar
-                            2. Defenderse
-                            3. Descansar
-            
-                            Elige tu accion: """
-                    )
+                    print("1. Atacar")
+                    print("2. Defenderse")
+                    print("3. Descansar")
+                    
+                    select = numberInput("\nElige tu accion: ")
                     
                     match select: 
                         
                         case 1: 
-                            print("Ataque")
+                            print("\nAtaque")
                         
                         case 2: 
-                            print("Defender")
+                            print("\nDefender")
                             
                         case 3:
-                            print("Descansar")
+                            print("\nDescansar")
                     
-                    print(segundo_turno)
+                    print(f"\n{segundo_turno}:")
                     
-                    select = numberInput(
-                        """\n1. Atacar
-                            2. Defenderse
-                            3. Descansar
-            
-                            Elige tu accion: """
-                    )
+                    print("1. Atacar")
+                    print("2. Defenderse")
+                    print("3. Descansar")
+                    
+                    select = numberInput("\nElige tu accion: ")
                     
                     match select: 
                         
                         case 1: 
-                            print("Ataque")
+                            print("\nAtaque")
                         
                         case 2: 
-                            print("Defender")
+                            print("\nDefender")
                             
                         case 3:
-                            print("Descansar")
+                            print("\nDescansar")
             
             case 4:
                 print("¡Vuelve pronto para otro combate pokemon!")
@@ -126,3 +122,6 @@ def pokemon_duel():
             
             case _:
                 print("\nOpcion no valida. Por favor intente de nuevo")
+                
+
+pokemon_duel()
