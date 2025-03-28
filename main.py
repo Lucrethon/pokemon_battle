@@ -1,42 +1,7 @@
 import pokemon_class as p_class
 import random
-import json
-from pathlib import Path
-
-#if __name__ == "__main__":
-
-ruta_archivo = Path(__file__).parent / "pokemon_list.json"  
-
-with open(ruta_archivo, mode='r') as file:
-    pokemons = json.load(file)
-
-# for pokemon in pokemons:
-#     print(f"\n{pokemon}")
-
-def numberInput(message):
-
-    while True:
-
-        try:
-            var = int(input(message))
-
-            break
-        except ValueError as error:
-            print(
-                "\nHas introducido un caracter invalido. Por favor intentalo de nuevo"
-            )
-            print(error)
-    return var
-
-
-def stringInput(message):
-
-    try:
-        var = str(input(message))
-    except ValueError as error:
-        print("\nHas introducido un caracter invalido. Por favor intentalo de nuevo")
-        print(error)
-    return var
+import os
+import functions as f
 
 def pokemon_duel(): 
     
@@ -48,7 +13,7 @@ def pokemon_duel():
         print("3. Comenzar juego")
         print("4. Salir")
         
-        select = numberInput("\nElije una de las 4 opciones: ")
+        select = f.numberInput("\nElije una de las 4 opciones: ")
         
         match select: 
             
@@ -61,8 +26,9 @@ def pokemon_duel():
             
             case 3: 
                 
-                jugador_1 = stringInput("Nombre del jugador 1: ")
-                jugador_2 = stringInput("Nombre del jugador 2: ")
+                os.system('clear')
+                jugador_1 = f.stringInput("Nombre del jugador 1: ")
+                jugador_2 = f.stringInput("Nombre del jugador 2: ")
                 
                 jugadores = [jugador_1, jugador_2]
                 
@@ -71,8 +37,11 @@ def pokemon_duel():
                 primer_turno = random.choice(jugadores)
                 print(f"\n¡{primer_turno}!")
                 
-                #valor_si_verdadero if condición else valor_si_falso
+                #variable = valor_si_verdadero if condición else valor_si_falso
                 segundo_turno = jugadores[0] if primer_turno == jugadores[1] else jugadores[1]
+                
+                #elegir_3_pokemones(primer_turno)
+                #elegir_3_pokemones(segundo_turno)
                 
                 print("!Que comience el duelo!")
                 
@@ -80,41 +49,13 @@ def pokemon_duel():
                     
                     print(f"\n{primer_turno}:")
                     
-                    print("1. Atacar")
-                    print("2. Defenderse")
-                    print("3. Descansar")
-                    
-                    select = numberInput("\nElige tu accion: ")
-                    
-                    match select: 
-                        
-                        case 1: 
-                            print("\nAtaque")
-                        
-                        case 2: 
-                            print("\nDefender")
-                            
-                        case 3:
-                            print("\nDescansar")
+                    f.turno()
                     
                     print(f"\n{segundo_turno}:")
                     
-                    print("1. Atacar")
-                    print("2. Defenderse")
-                    print("3. Descansar")
+                    f.turno()
                     
-                    select = numberInput("\nElige tu accion: ")
-                    
-                    match select: 
-                        
-                        case 1: 
-                            print("\nAtaque")
-                        
-                        case 2: 
-                            print("\nDefender")
-                            
-                        case 3:
-                            print("\nDescansar")
+                    os.system('clear')
             
             case 4:
                 print("¡Vuelve pronto para otro combate pokemon!")
@@ -124,4 +65,7 @@ def pokemon_duel():
                 print("\nOpcion no valida. Por favor intente de nuevo")
                 
 
-pokemon_duel()
+
+
+if __name__ == "__main__":
+    pokemon_duel()
