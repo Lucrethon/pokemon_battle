@@ -40,18 +40,19 @@ def pokemon_duel():
                 #variable = valor_si_verdadero if condición else valor_si_falso
                 segundo_turno = jugadores[0] if primer_turno == jugadores[1] else jugadores[1]
                 
-                #elegir_3_pokemones(primer_turno)
-                #elegir_3_pokemones(segundo_turno)
+                #Elegir equipos 
                 
-                print("!Que comience el duelo!")
+                f.elegir_equipo(primer_turno, segundo_turno, p_class.lista_pokemon)
+                
+                print("\n!Que comience el duelo!")
                 
                 while True: 
                     
-                    print(f"\n{primer_turno}:")
+                    print(f"\nTurno de {primer_turno}:")
                     
                     f.turno()
                     
-                    print(f"\n{segundo_turno}:")
+                    print(f"\nTurno de {segundo_turno}:")
                     
                     f.turno()
                     

@@ -121,9 +121,8 @@ def crear_objetos_pokemon(lista_pokemon):
     
     return objetos_creados
         
-        
 
-
+lista_pokemon = crear_objetos_pokemon(pokemons)
 
 
 
