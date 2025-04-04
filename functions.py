@@ -1,4 +1,4 @@
-import pokemon_class as p_class
+import models as p_class
 
 def numberInput(message):
 
