@@ -76,6 +76,13 @@ class Pokemon:
                 return self.energy_points
         else:
             print("No tienes suficiente energia para realizar este ataque")
+    
+    def defeated(self): #--> Bool
+        if self.HP <= 0: 
+            return True
+        
+        else:
+            return False
 
 
 class Attack:
@@ -138,34 +145,24 @@ class Attack:
             return 0
 
 
-
-
-
-# Logica para:
-# Dentro de un array A con diccionarios, cada diccionario tiene una llave que tiene como valor un array B,
-# y dentro de ese array B hay otros diccionarios.
-# Como accedo a las llaves de los diccionarios que estan dentro del array B con .get()?
-
-
-# def crear_ataques(lista_pokemon):
-
-#     objetos_creados = []
-
-#     for pokemon in lista_pokemon:
-
-#         ataques = pokemon.get("ataques", [])
-
-#         for objeto in ataques:
-
-#             ataque = Attack(objeto.get("nombre"),
-#                             objeto.get("descripcion"),
-#                             objeto.get("costo_energia"),
-#                             objeto.get("probabilidad_exito")/100,
-#                             objeto.get("puntos_daño"),
-#                             objeto.get("efecto_elemental".lower()),
-#                             objeto.get("efecto_especial")
-#                             )
-
-#             objetos_creados.append(ataque)
-
-#     return objetos_creados
+class PokemonTrainer: 
+    
+    def __init__(self, name, pokemon_team):
+        self.name = name
+        self.pokemon_team = pokemon_team
+        self.defeated_pokemon = []
+    
+    def defeated_pokemon_list(self):
+        
+        #indices = [i for i, x in enumerate(array) if x > 3]
+        defeated_indice = [i for i, pokemon in enumerate(self.pokemon_team) if pokemon.defeated()] #-> Indice
+        
+        if defeated_indice: 
+            
+            pokemon_defeated = self.pokemon_team.pop(defeated_indice)
+            self.defeated_pokemon.append(pokemon_defeated)
+            
+            return self.pokemon_team, self.defeated_pokemon
+        
+        else: 
+            return self.pokemon_team, self.defeated_pokemon

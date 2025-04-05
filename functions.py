@@ -44,3 +44,33 @@ def crear_objetos_pokemon(lista_pokemon):
         objetos_creados.append(pokemon)
 
     return objetos_creados
+
+
+# Logica para:
+# Dentro de un array A con diccionarios, cada diccionario tiene una llave que tiene como valor un array B,
+# y dentro de ese array B hay otros diccionarios.
+# Como accedo a las llaves de los diccionarios que estan dentro del array B con .get()?
+
+
+# def crear_ataques(lista_pokemon):
+
+#     objetos_creados = []
+
+#     for pokemon in lista_pokemon:
+
+#         ataques = pokemon.get("ataques", [])
+
+#         for objeto in ataques:
+
+#             ataque = Attack(objeto.get("nombre"),
+#                             objeto.get("descripcion"),
+#                             objeto.get("costo_energia"),
+#                             objeto.get("probabilidad_exito")/100,
+#                             objeto.get("puntos_daño"),
+#                             objeto.get("efecto_elemental".lower()),
+#                             objeto.get("efecto_especial")
+#                             )
+
+#             objetos_creados.append(ataque)
+
+#     return objetos_creados
