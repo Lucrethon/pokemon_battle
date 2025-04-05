@@ -16,7 +16,7 @@ class Pokemon:
         self.defend = False
 
     def __repr__(self):
-        return f"\nNombre: {self.name} \nElemento: {self.element} \nPuntos de vida: {self.HP} \nProbabilidad de ataque critico: {self.crit_rate} \nBonificador de ataque critico: {self.crit_damage} \nAtaques: \n{self.attacks}"
+        return f"\nNombre: {self.name} \nElemento: {self.element} \nPuntos de vida: {self.HP} \nProbabilidad de ataque critico: {self.crit_rate} \nBonificador de ataque critico: {self.crit_damage}" #\nAtaques: \n{self.attacks}"
 
     def get_crit_attack(self):
 
@@ -151,6 +151,7 @@ class PokemonTrainer:
         self.name = name
         self.pokemon_team = pokemon_team
         self.defeated_pokemon = []
+        self.is_first_player = False
     
     def defeated_pokemon_list(self):
         

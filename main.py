@@ -43,12 +43,12 @@ def pokemon_duel():
             case 3:
 
                 os.system("clear")
-                jugador_1 = u.stringInput("Nombre del jugador 1: ")
-                jugador_2 = u.stringInput("Nombre del jugador 2: ")
+                nombre_jugador_1 = u.stringInput("Nombre del jugador 1: ")
+                nombre_jugador_2 = u.stringInput("Nombre del jugador 2: ")
 
-                jugadores = [jugador_1, jugador_2]
+                jugadores = [nombre_jugador_1, nombre_jugador_2]
 
-                print("\nEl primero en comenzar el duelo es... ")
+                print("\nEl primero en comenzar elegir sus pokemones es... ")
 
                 primer_turno = random.choice(jugadores)
                 print(f"\n¡{primer_turno}!")
@@ -60,7 +60,7 @@ def pokemon_duel():
 
                 # Elegir equipos
 
-                f.elegir_equipo(primer_turno, segundo_turno, lista_pokemon)
+                g.elegir_equipo(primer_turno, segundo_turno, lista_pokemon)
 
                 print("\n!Que comience el duelo!")
 
