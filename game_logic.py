@@ -3,7 +3,7 @@ import models
 
 #turnos
 
-def turno():
+def turno(jugador: models.PokemonTrainer):
 
     print("1. Atacar")
     print("2. Defenderse")
@@ -17,9 +17,8 @@ def turno():
             print("\nAtaque")
 
             # seleccionar ataque
-
             # comprobar energia
-            #atacar
+            # atacar
 
         case 2:
             print("\nDefender")
@@ -38,10 +37,8 @@ def turno():
 
 #Elegir equipo
 
-def elegir_equipo(jugador_1, jugador_2, lista_pokemon):
+def elegir_equipo(jugador_1, jugador_2, equipo_jugador1, equipo_jugador2, lista_pokemon):
 
-    equipo_jugador1 = []
-    equipo_jugador2 = []
     
     pokemones_por_jugador = 3
     turnos = pokemones_por_jugador * 2
@@ -79,3 +76,18 @@ def elegir_equipo(jugador_1, jugador_2, lista_pokemon):
         contador += 1
 
     return equipo_jugador1, equipo_jugador2
+
+
+def elegir_pokemon(jugador: models.PokemonTrainer, pokemon_en_juego):    
+    while True: 
+        
+        u.desplegar_lista(jugador.pokemon_team)
+        seleccion = u.numberInput("Elige tu siguiente pokemon:")
+        
+        if 0 <= seleccion - 1 < len(jugador.pokemon_team):
+            pokemon_en_juego = jugador.pokemon_team[seleccion]
+            print(f"\n<{jugador.name} ha elegido a {pokemon_en_juego.name}!")
+            return pokemon_en_juego
+        
+        else:
+            print("Ese numero no esta en tu lista. Intentalo de nuevo")

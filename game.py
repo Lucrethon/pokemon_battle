@@ -3,6 +3,7 @@ import os
 import game_logic as g
 import functions as f
 import utils as u
+import models as m
 import json
 from pathlib import Path
     
@@ -24,7 +25,7 @@ def run_game():
 
     jugadores = [nombre_jugador_1, nombre_jugador_2]
 
-    print("\nEl primero en comenzar elegir sus pokemones es... ")
+    print("\nEl primero en comenzar elegir su equipo Pokemon es... ")
 
     primer_turno = random.choice(jugadores)
     print(f"\n¡{primer_turno}!")
@@ -34,19 +35,30 @@ def run_game():
                 )
 
     # Elegir equipos
+    
+    equipo_jugador1 = []
+    equipo_jugador2 = []
 
-    g.elegir_equipo(primer_turno, segundo_turno, lista_pokemon)
+    g.elegir_equipo(primer_turno, segundo_turno, equipo_jugador1, equipo_jugador2, lista_pokemon)
+    
+    jugador1 = m.PokemonTrainer(primer_turno, equipo_jugador1)
+    jugador2 = m.PokemonTrainer(segundo_turno, equipo_jugador2)
+    jugador1.is_first_player = True
 
     print("\n!Que comience el duelo!")
+    
+    pokemon_en_juego1 = 1
+    pokemon_en_juego2 = 2
+    
+    g.elegir_pokemon(jugador1, pokemon_en_juego1)
+    g.elegir_pokemon(jugador2, pokemon_en_juego2)
 
     while True:
-
-        print(f"\nTurno de {primer_turno}:")
-
-        f.turno()
-        
-        print(f"\nTurno de {segundo_turno}:")
-
-        f.turno()
+        if jugador1.is_first_player:
+            print(f"\nTurno de {primer_turno}:")
+            #turno(jugador_1)
+        else:
+            print(f"\nTurno de {segundo_turno}:")
+            #turno(jugador_2)
 
         os.system("clear")
