@@ -16,7 +16,7 @@ class Pokemon:
         self.defend = False
 
     def __repr__(self):
-        return f"\nNombre: {self.name} \nElemento: {self.element} \nPuntos de vida: {self.HP} \nProbabilidad de ataque critico: {self.crit_rate} \nBonificador de ataque critico: {self.crit_damage}" #\nAtaques: \n{self.attacks}"
+        return f"\nNombre: {self.name} \nElemento: {self.element} \nPuntos de vida: {self.HP} \nProbabilidad de ataque critico: {self.crit_rate} \nBonificador de ataque critico: {self.crit_damage}"  # \nAtaques: \n{self.attacks}"
 
     def get_crit_attack(self):
 
@@ -76,11 +76,11 @@ class Pokemon:
                 return self.energy_points
         else:
             print("No tienes suficiente energia para realizar este ataque")
-    
-    def defeated(self): #--> Bool
-        if self.HP <= 0: 
+
+    def defeated(self):  # --> Bool
+        if self.HP <= 0:
             return True
-        
+
         else:
             return False
 
@@ -134,10 +134,10 @@ class Attack:
         if defender_pokemon.defend == False:
             if self.elemental_effect == "ninguno":
                 return 0
-            else: 
-                bonus_elemental = Attack.elemental_bonus.get(self.elemental_effect, {}).get(
-                    defender_pokemon.element
-            )
+            else:
+                bonus_elemental = Attack.elemental_bonus.get(
+                    self.elemental_effect, {}
+                ).get(defender_pokemon.element)
 
                 return bonus_elemental
 
@@ -145,28 +145,28 @@ class Attack:
             return 0
 
 
-class PokemonTrainer: 
-    
+class PokemonTrainer:
+
     def __init__(self, name, pokemon_team):
         self.name = name
         self.pokemon_team = pokemon_team
         self.defeated_pokemon = []
         self.is_first_player = False
         self.current_pokemon = None
-    
+
     def defeated_pokemon_list(self):
-        
-        #indices = [i for i, x in enumerate(array) if x > 3]
-        defeated_indice = [i for i, pokemon in enumerate(self.pokemon_team) if pokemon.defeated()] #-> Indice
-        
-        if defeated_indice: 
-            
+
+        # indices = [i for i, x in enumerate(array) if x > 3]
+        defeated_indice = [
+            i for i, pokemon in enumerate(self.pokemon_team) if pokemon.defeated()
+        ]  # -> Indice
+
+        if defeated_indice:
+
             pokemon_defeated = self.pokemon_team.pop(defeated_indice)
             self.defeated_pokemon.append(pokemon_defeated)
-            
+
             return self.pokemon_team, self.defeated_pokemon
-        
-        else: 
+
+        else:
             return self.pokemon_team, self.defeated_pokemon
-        
-        

@@ -1,7 +1,6 @@
 import os
 import utils as u
 import game
-    
 
 
 def main_menu():
@@ -36,5 +35,5 @@ def main_menu():
 
 
 if __name__ == "__main__":
-    #init_app()
+    # init_app()
     main_menu()

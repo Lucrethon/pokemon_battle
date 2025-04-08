@@ -1,7 +1,8 @@
 import utils as u
 import models
 
-#turnos
+# turnos
+
 
 def turno(jugador: models.PokemonTrainer):
 
@@ -23,30 +24,32 @@ def turno(jugador: models.PokemonTrainer):
         case 2:
             print("\nDefender")
 
-            #defenderse
+            # defenderse
 
         case 3:
             print("\nDescansar")
 
-            #descansar
+            # descansar
 
         case _:
             print("\nOpcion no valida. Por favor intente de nuevo")
 
     return select
 
-#Elegir equipo
 
-def elegir_equipo(jugador_1, jugador_2, equipo_jugador1, equipo_jugador2, lista_pokemon):
+# Elegir equipo
 
-    
+
+def elegir_equipo(
+    jugador_1, jugador_2, equipo_jugador1, equipo_jugador2, lista_pokemon
+):
+
     pokemones_por_jugador = 3
     turnos = pokemones_por_jugador * 2
     contador = 1
-    
+
     turno_actual = jugador_1
     equipo_turno_actual = equipo_jugador1
-
 
     while contador <= turnos:
 
@@ -69,25 +72,29 @@ def elegir_equipo(jugador_1, jugador_2, equipo_jugador1, equipo_jugador2, lista_
                 print(
                     "Ese número no se encuentra en la lista. Por favor, inténtalo de nuevo."
                 )
-        
-        #if-else  compacto: valor_si_verdadero if condicion else valor_si_falso
+
+        # if-else  compacto: valor_si_verdadero if condicion else valor_si_falso
         turno_actual = jugador_2 if turno_actual == jugador_1 else jugador_1
-        equipo_turno_actual = equipo_jugador2 if equipo_turno_actual == equipo_jugador1 else equipo_jugador1
+        equipo_turno_actual = (
+            equipo_jugador2
+            if equipo_turno_actual == equipo_jugador1
+            else equipo_jugador1
+        )
         contador += 1
 
     return equipo_jugador1, equipo_jugador2
 
 
-def elegir_pokemon(jugador: models.PokemonTrainer, pokemon_en_juego):    
-    while True: 
-        
+def elegir_pokemon(jugador: models.PokemonTrainer, pokemon_en_juego):
+    while True:
+
         u.desplegar_lista(jugador.pokemon_team)
         seleccion = u.numberInput("Elige tu siguiente pokemon:")
-        
+
         if 0 <= seleccion - 1 < len(jugador.pokemon_team):
             pokemon_en_juego = jugador.pokemon_team[seleccion]
             print(f"\n<{jugador.name} ha elegido a {pokemon_en_juego.name}!")
             return pokemon_en_juego
-        
+
         else:
             print("Ese numero no esta en tu lista. Intentalo de nuevo")

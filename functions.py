@@ -1,7 +1,8 @@
 import models
 import random
 
-#Crear objetos Attack
+# Crear objetos Attack
+
 
 def crear_ataques(lista_ataques):
 
@@ -76,10 +77,11 @@ def crear_objetos_pokemon(lista_pokemon):
 
 #     return objetos_creados
 
-def is_first_player(jugador1 : models.PokemonTrainer, jugador2: models.PokemonTrainer):
-    
+
+def is_first_player(jugador1: models.PokemonTrainer, jugador2: models.PokemonTrainer):
+
     jugadores = [jugador1, jugador2]
-    
+
     primer_turno = random.choice(jugadores)
     primer_turno.is_first_player = True
 
