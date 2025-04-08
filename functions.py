@@ -4,48 +4,48 @@ import random
 # Crear objetos Attack
 
 
-def crear_ataques(lista_ataques):
+def create_attack_objects(attack_dicctionary):
 
-    objetos_creados = []
+    attack_list = []
 
-    for ataque in lista_ataques:
+    for attack in attack_dicctionary:
 
-        ataque = models.Attack(
-            ataque.get("nombre"),
-            ataque.get("descripcion"),
-            ataque.get("costo_energia"),
-            ataque.get("probabilidad_exito") / 100,
-            ataque.get("puntos_daño"),
-            (ataque.get("efecto_elemental")).lower(),
-            ataque.get("efecto_especial"),
+        attack = models.Attack(
+            attack.get("nombre"),
+            attack.get("descripcion"),
+            attack.get("costo_energia"),
+            attack.get("probabilidad_exito") / 100,
+            attack.get("puntos_daño"),
+            (attack.get("efecto_elemental")).lower(),
+            attack.get("efecto_especial"),
         )
 
-        objetos_creados.append(ataque)
+        attack_list.append(attack)
 
-    return objetos_creados
+    return attack_list
 
 
 # Crear objetos Pokemon
 
 
-def crear_objetos_pokemon(lista_pokemon):
+def create_pokemon_objects(pokemon_json):
 
-    objetos_creados = []
+    pokemon_list = []
 
-    for diccionario in lista_pokemon:
+    for dictionary in pokemon_json:
 
         pokemon = models.Pokemon(
-            diccionario.get("nombre"),
-            (diccionario.get("tipo")).lower(),
-            diccionario.get("puntos_vida"),
-            diccionario.get("probabilidad_critico") / 100,
-            diccionario.get("bonificacion_critico") / 100,
-            crear_ataques(diccionario.get("ataques")),
+            dictionary.get("nombre"),
+            (dictionary.get("tipo")).lower(),
+            dictionary.get("puntos_vida"),
+            dictionary.get("probabilidad_critico") / 100,
+            dictionary.get("bonificacion_critico") / 100,
+            create_attack_objects(dictionary.get("ataques")),
         )
 
-        objetos_creados.append(pokemon)
+        pokemon_list.append(pokemon)
 
-    return objetos_creados
+    return pokemon_list
 
 
 # Logica para:
@@ -78,9 +78,9 @@ def crear_objetos_pokemon(lista_pokemon):
 #     return objetos_creados
 
 
-def is_first_player(jugador1: models.PokemonTrainer, jugador2: models.PokemonTrainer):
+def is_first_player(player1: models.PokemonTrainer, player2: models.PokemonTrainer):
 
-    jugadores = [jugador1, jugador2]
+    jugadores = [player1, player2]
 
     primer_turno = random.choice(jugadores)
     primer_turno.is_first_player = True

@@ -1,10 +1,26 @@
 import utils as u
 import models
+import os
+import random
+import models as m
+import json
+import functions as f
+from pathlib import Path
+
+
+# importar Json
+
+file_path = Path(__file__).parent / "pokemon_list.json"
+
+with open(file_path, mode="r") as file:
+    pokemons = json.load(file)
+
+pokemon_list = f.create_pokemon_objects(pokemons)
 
 # turnos
 
 
-def turno(jugador: models.PokemonTrainer):
+def turno(player: models.PokemonTrainer):
 
     print("1. Atacar")
     print("2. Defenderse")
@@ -40,32 +56,35 @@ def turno(jugador: models.PokemonTrainer):
 # Elegir equipo
 
 
-def elegir_equipo(
-    jugador_1, jugador_2, equipo_jugador1, equipo_jugador2, lista_pokemon
+def choose_pokemon_team(
+    player1, player2, pokemon_list
 ):
+    
+    team_player1 = []
+    team_player2 = []
 
-    pokemones_por_jugador = 3
-    turnos = pokemones_por_jugador * 2
-    contador = 1
+    pokemons_per_player = 3
+    shifts = pokemons_per_player * 2
+    counter = 1
 
-    turno_actual = jugador_1
-    equipo_turno_actual = equipo_jugador1
+    name_current_shift = player1
+    team_current_shift = team_player1
 
-    while contador <= turnos:
+    while counter <= shifts:
 
         print("\nLista de pokemones disponibles:")
-        u.desplegar_lista(lista_pokemon)
+        u.desplegar_lista(pokemon_list)
 
         while True:
 
-            select1 = u.numberInput(f"\n{turno_actual}, elige un Pokémon de la lista: ")
+            select1 = u.numberInput(f"\n{name_current_shift}, elige un Pokémon de la lista: ")
 
-            if 0 <= select1 - 1 < len(lista_pokemon):
-                pokemon = lista_pokemon.pop(select1 - 1)
-                equipo_turno_actual.append(pokemon)
+            if 0 <= select1 - 1 < len(pokemon_list):
+                pokemon = pokemon_list.pop(select1 - 1)
+                team_current_shift.append(pokemon)
 
-                print(f"\nEquipo Pokemon de {turno_actual}")
-                u.desplegar_lista(equipo_turno_actual)
+                print(f"\nEquipo Pokemon de {name_current_shift}")
+                u.desplegar_lista(team_current_shift)
                 break
 
             else:
@@ -74,27 +93,56 @@ def elegir_equipo(
                 )
 
         # if-else  compacto: valor_si_verdadero if condicion else valor_si_falso
-        turno_actual = jugador_2 if turno_actual == jugador_1 else jugador_1
-        equipo_turno_actual = (
-            equipo_jugador2
-            if equipo_turno_actual == equipo_jugador1
-            else equipo_jugador1
+        name_current_shift = player2 if name_current_shift == player1 else player1
+        team_current_shift = (
+            team_player2
+            if team_current_shift == team_player1
+            else team_player1
         )
-        contador += 1
+        counter += 1
 
-    return equipo_jugador1, equipo_jugador2
+    return team_player1, team_player2
 
 
-def elegir_pokemon(jugador: models.PokemonTrainer, pokemon_en_juego):
+def choose_pokemon(player: models.PokemonTrainer, pokemon_en_juego):
     while True:
 
-        u.desplegar_lista(jugador.pokemon_team)
+        u.desplegar_lista(player.pokemon_team)
         seleccion = u.numberInput("Elige tu siguiente pokemon:")
 
-        if 0 <= seleccion - 1 < len(jugador.pokemon_team):
+        if 0 <= seleccion - 1 < len(player.pokemon_team):
             pokemon_en_juego = jugador.pokemon_team[seleccion]
             print(f"\n<{jugador.name} ha elegido a {pokemon_en_juego.name}!")
             return pokemon_en_juego
 
         else:
             print("Ese numero no esta en tu lista. Intentalo de nuevo")
+
+
+def initial_setup():
+    
+    os.system("clear")
+    name_1 = u.stringInput("Nombre del jugador 1: ")
+    name_2 = u.stringInput("Nombre del jugador 2: ")
+
+    players = [name_1, name_2]
+
+    print("\nEl primero en comenzar elegir su equipo Pokemon es... ")
+
+    name_1st_shift = random.choice(players)
+    print(f"\n¡{name_1st_shift}!")
+
+    # variable = valor_si_verdadero if condición else valor_si_falso
+    name_2nd_shift = players[0] if name_1st_shift == players[1] else players[1]
+
+    # Elegir equipos
+
+    team_player1, team_player2 = choose_pokemon_team(
+        name_1st_shift, name_2nd_shift, pokemon_list
+    )
+
+    player1 = m.PokemonTrainer(name_1st_shift, team_player1)
+    player2 = m.PokemonTrainer(name_2nd_shift, team_player2)
+    player1.is_first_player = True
+    
+    return player1, player2
