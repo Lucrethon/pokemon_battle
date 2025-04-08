@@ -47,11 +47,16 @@ def run_game():
 
     print("\n!Que comience el duelo!")
     
-    pokemon_en_juego1 = 1
-    pokemon_en_juego2 = 2
+    #Elegir primer pokemon de batalla
+    # Utilizar atributo de clase PokemonTrainer
+    
+    pokemon_en_juego1 = random.choice(jugador1.pokemon_team)
+    pokemon_en_juego2 = random.choice(jugador2.pokemon_team)
     
     g.elegir_pokemon(jugador1, pokemon_en_juego1)
     g.elegir_pokemon(jugador2, pokemon_en_juego2)
+    
+    
 
     while True:
         if jugador1.is_first_player:
@@ -62,3 +67,4 @@ def run_game():
             #turno(jugador_2)
 
         os.system("clear")
+

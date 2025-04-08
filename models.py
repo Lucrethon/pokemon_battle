@@ -152,6 +152,7 @@ class PokemonTrainer:
         self.pokemon_team = pokemon_team
         self.defeated_pokemon = []
         self.is_first_player = False
+        self.current_pokemon = None
     
     def defeated_pokemon_list(self):
         
@@ -167,3 +168,5 @@ class PokemonTrainer:
         
         else: 
             return self.pokemon_team, self.defeated_pokemon
+        
+        
