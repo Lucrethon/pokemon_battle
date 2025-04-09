@@ -8,6 +8,8 @@ import models as m
 
 
 def run_game():
+    
+    os.system("clear")
 
     player1, player2 = g.initial_setup()
 
@@ -19,12 +21,17 @@ def run_game():
     g.choose_pokemon(player2)
     
 
-    while True:
+    while len(player1.pokemon_team) == 0 or len(player2.pokemon_team) == 0:
+        
         if player1.is_first_player:
             print(f"\nTurno de {player1.name}:")
-            g.turn(player1)
+            #g.turn(player1, )
         else:
             print(f"\nTurno de {player2.name}:")
-            g.turn(player2)
+            #g.turn(player2)
 
         os.system("clear")
+        
+    winner = player1.name if len(player1.pokemon_team) == 0 else player2.name
+    
+    print(f"\nEl duelo ha terminado. El ganador es {winner}!")
