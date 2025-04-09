@@ -1,6 +1,14 @@
 from __future__ import annotations
 import random
+from enum import Enum
 
+class Elements(Enum):
+    agua = 1
+    fuego = 2
+    hierba = 3
+    neutro = 4
+    ninguno = 5
+    
 
 class Pokemon:
 
@@ -80,9 +88,9 @@ class Pokemon:
     
     def has_elemental_weakness(self, attack: Attack) -> bool:
         return (
-            (attack.elemental_effect == "agua" and self.element == "fuego") or
-            (attack.elemental_effect == "planta" and self.element == "agua") or
-            (attack.elemental_effect == "fuego" and self.element == "planta")
+            (attack.elemental_effect == Elements.agua and self.element == Elements.fuego) or
+            (attack.elemental_effect == Elements.hierba and self.element == Elements.agua) or
+            (attack.elemental_effect == Elements.fuego and self.element == Elements.hierba)
         )
 
 
@@ -119,7 +127,7 @@ class Attack:
     def get_elemental_bonus(self, defender_pokemon: Pokemon):
 
         if defender_pokemon.is_defending == False:
-            if self.elemental_effect == "ninguno":
+            if self.elemental_effect == Elements.ninguno:
                 return 0
             else:
                 bonus_elemental = 0.2 if defender_pokemon.has_elemental_weakness else 0
