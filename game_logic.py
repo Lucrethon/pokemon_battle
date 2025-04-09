@@ -8,14 +8,19 @@ import main
 
 
 def turn(player: models.PokemonTrainer, oposing_pokemon: models.Pokemon):
-    
-    player.set_defeated_pokemon_list()
-    
+        
     while True:
         
         #generador: x for x in lista if x == valor (Produce los valores uno a uno)(iterador)
         #next sintaxis: next(iterador, valor_por_defecto) --> Devuelve el siguiente elemento del iterador
         current_pokemon = next((pokemon for pokemon in player.pokemon_team if pokemon.name == player.current_pokemon))
+        
+        if current_pokemon.is_defeated():
+            player.set_defeated_pokemon_list()
+            print(f"\n{current_pokemon.name} ha sido derrotado. Por favor elige tu siguiente pokemon:")
+            choose_pokemon(player)
+        else:
+            continue
 
         print("1. Atacar")
         print("2. Defenderse")
@@ -81,7 +86,7 @@ def turn(player: models.PokemonTrainer, oposing_pokemon: models.Pokemon):
             
             case 4: 
                 choose_pokemon(player)
-                print(f"\n{player.name} ha cambiado a {choose_pokemon(player)}")
+                print(f"\n{player.name} ha cambiado a {choose_pokemon(player).name}")
                 break
 
             case _:
@@ -143,15 +148,16 @@ def choose_pokemon_team(
 
 def choose_pokemon(player: models.PokemonTrainer):
     while True:
-
+        
+        print(f"\nEquipo de {player.name}:")
         u.desplegar_lista(player.pokemon_team)
         seleccion = u.numberInput(f"\n{player.name}, elige tu siguiente pokemon:")
 
         if 0 <= seleccion - 1 < len(player.pokemon_team):
             current_pokemon = player.pokemon_team[seleccion-1]
             player.current_pokemon = current_pokemon.name
-            print(f"\n<{player.name} ha elegido a {current_pokemon.name}!")
-            return current_pokemon.name
+            print(f"\n{player.name} ha elegido a {current_pokemon.name}!")
+            return current_pokemon
 
         else:
             print("Ese numero no esta en tu lista. Intentalo de nuevo")
