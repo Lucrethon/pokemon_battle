@@ -20,37 +20,58 @@ pokemon_list = f.create_pokemon_objects(pokemons)
 # turnos
 
 
-def turno(player: models.PokemonTrainer):
+def turn(player: models.PokemonTrainer, oposing_pokemon: models.Pokemon):
+    
+    while True:
+        
+        #generador: x for x in lista if x == valor (Produce los valores uno a uno)(iterador)
+        #next sintaxis: next(iterador, valor_por_defecto) --> Devuelve el siguiente elemento del iterador
+        current_pokemon = next((pokemon for pokemon in player.pokemon_team if pokemon.name == player.current_pokemon))
 
-    print("1. Atacar")
-    print("2. Defenderse")
-    print("3. Descansar")
+        print("1. Atacar")
+        print("2. Defenderse")
+        print("3. Descansar")
+        print("4. Cambiar de pokemon")
 
-    select = u.numberInput("\nElige tu accion: ")
+        select = u.numberInput("\nElige tu accion: ")
 
-    match select:
+        match select:
 
-        case 1:
-            print("\nAtaque")
+            case 1:
+                print(f"\n{current_pokemon.name} tiene {current_pokemon.energy_points} puntos de energia.")
+                
+                #elegir ataque
+                u.desplegar_lista(current_pokemon.attacks)
+                select_attack = u.numberInput("\nSelecciona el ataque que quieres realizar:")
+                
+                if 0 <= select_attack - 1 < len(current_pokemon.attacks):
+                    current_attack = current_pokemon.attacks[select_attack-1]
+                    if current_pokemon.has_enough_energy(current_attack): #comprobrar energia
+                        current_pokemon.attack(oposing_pokemon, current_attack) #atacar
+                    
+                    else:
+                        print("No tienes suficiente energia para realizar este ataque. Por favor elige otro")
 
-            # seleccionar ataque
-            # comprobar energia
-            # atacar
+            case 2:
+                current_pokemon.defend()
+                print(f"\n{current_pokemon.name} se esta defendiendo.")
+                break
 
-        case 2:
-            print("\nDefender")
+            case 3:               
+                a, b = current_pokemon.rest()
+                print(f"\n{current_pokemon.name} esta descansando.")
+                break
 
-            # defenderse
+                # descansar
+            
+            case 4: 
+                choose_pokemon(player)
+                break
 
-        case 3:
-            print("\nDescansar")
+            case _:
+                print("\nOpcion no valida. Por favor intente de nuevo")
 
-            # descansar
-
-        case _:
-            print("\nOpcion no valida. Por favor intente de nuevo")
-
-    return select
+        return select
 
 
 # Elegir equipo
@@ -64,27 +85,27 @@ def choose_pokemon_team(
     team_player2 = []
 
     pokemons_per_player = 3
-    shifts = pokemons_per_player * 2
+    turns = pokemons_per_player * 2
     counter = 1
 
-    name_current_shift = player1
-    team_current_shift = team_player1
+    name_current_turn = player1
+    team_current_turn = team_player1
 
-    while counter <= shifts:
+    while counter <= turns:
 
         print("\nLista de pokemones disponibles:")
         u.desplegar_lista(pokemon_list)
 
         while True:
 
-            select1 = u.numberInput(f"\n{name_current_shift}, elige un Pokémon de la lista: ")
+            select1 = u.numberInput(f"\n{name_current_turn}, elige un Pokémon de la lista: ")
 
             if 0 <= select1 - 1 < len(pokemon_list):
                 pokemon = pokemon_list.pop(select1 - 1)
-                team_current_shift.append(pokemon)
+                team_current_turn.append(pokemon)
 
-                print(f"\nEquipo Pokemon de {name_current_shift}")
-                u.desplegar_lista(team_current_shift)
+                print(f"\nEquipo Pokemon de {name_current_turn}")
+                u.desplegar_lista(team_current_turn)
                 break
 
             else:
@@ -93,10 +114,10 @@ def choose_pokemon_team(
                 )
 
         # if-else  compacto: valor_si_verdadero if condicion else valor_si_falso
-        name_current_shift = player2 if name_current_shift == player1 else player1
-        team_current_shift = (
+        name_current_turn = player2 if name_current_turn == player1 else player1
+        team_current_turn = (
             team_player2
-            if team_current_shift == team_player1
+            if team_current_turn == team_player1
             else team_player1
         )
         counter += 1
@@ -108,10 +129,10 @@ def choose_pokemon(player: models.PokemonTrainer):
     while True:
 
         u.desplegar_lista(player.pokemon_team)
-        seleccion = u.numberInput("Elige tu siguiente pokemon:")
+        seleccion = u.numberInput(f"\n{player.name}, elige tu siguiente pokemon:")
 
         if 0 <= seleccion - 1 < len(player.pokemon_team):
-            current_pokemon = player.pokemon_team[seleccion]
+            current_pokemon = player.pokemon_team[seleccion-1]
             player.current_pokemon = current_pokemon.name
             print(f"\n<{player.name} ha elegido a {current_pokemon.name}!")
             return player

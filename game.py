@@ -17,13 +17,14 @@ def run_game():
 
     g.choose_pokemon(player1)
     g.choose_pokemon(player2)
+    
 
     while True:
         if player1.is_first_player:
             print(f"\nTurno de {player1.name}:")
-            # turno(jugador_1)
+            g.turn(player1)
         else:
             print(f"\nTurno de {player2.name}:")
-            # turno(jugador_2)
+            g.turn(player2)
 
         os.system("clear")

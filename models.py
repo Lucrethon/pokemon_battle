@@ -13,10 +13,16 @@ class Pokemon:
         self.crit_damage = crit_damage
         self.energy_points = 10
         self.attacks = attacks  # --> array
-        self.defend = False
+        self.is_defending = False
 
     def __repr__(self):
         return f"\nNombre: {self.name} \nElemento: {self.element} \nPuntos de vida: {self.HP} \nProbabilidad de ataque critico: {self.crit_rate} \nBonificador de ataque critico: {self.crit_damage}"  # \nAtaques: \n{self.attacks}"
+
+    def has_enough_energy(self, attack: Attack):  # -> Bool
+        if self.energy_points >= attack.energy_cost:
+            return True
+        else:
+            False
 
     def get_crit_attack(self):
 
@@ -27,57 +33,53 @@ class Pokemon:
         else:
             return 0
 
-    def defending(self):
+    def set_HP(self, number):
+        self.HP += number
+        
+    
+    def defend(self):
 
         self.energy_points += 1
-        self.defend = True
-
-        return self.energy_points, self.defend
-
-    def resting(self):
+        self.is_defending = True
+        
+    def rest(self):
 
         self.energy_points += 2
+        self.is_defending = False
+
+
+    def attack(self, other: Pokemon, attack: Attack):
+
         self.defend = False
 
-        return self.energy_points, self.defend
+        self.energy_points -= attack.energy_cost
 
-    def attack(self, other, attack: Attack):
+        if Attack.is_successful_attack():
 
-        self.defend = False
+            print("El ataque ha impactado")
 
-        if Attack.has_enough_energy(self.energy_points):
+            if other.is_defending:
 
-            self.energy_points -= attack.energy_cost
+                damage = - (0.6 * (
+                    Attack.damage + (Attack.damage * Pokemon.get_crit_attack(self))
+                    ))
+                    # Esto significa que other.HP perderá solo el 60% del daño calculado originalmente si other.is_defending = True
+                other.set_HP(damage)
 
-            if Attack.is_successful_attack():
-
-                print("El ataque ha impactado")
-
-                if other.defend:
-
-                    other.HP -= 0.6 * (
-                        Attack.damage + (Attack.damage * Pokemon.get_crit_attack(self))
-                    )
-                    # Esto significa que other.HP perderá solo el 60% del daño calculado originalmente si other.defend = True
-
-                    return other.HP, self.energy_points
-
-                else:
-
-                    other.HP -= (
-                        Attack.damage
-                        + (Attack.damage * Pokemon.get_crit_attack(self))
-                        + (Attack.damage * Attack.get_elemental_bonus(other.element))
-                    )
-                    return other.HP, self.energy_points
 
             else:
-                print("El ataque ha fallado")
-                return self.energy_points
-        else:
-            print("No tienes suficiente energia para realizar este ataque")
 
-    def defeated(self):  # --> Bool
+                damage = -(
+                    Attack.damage
+                    + (Attack.damage * Pokemon.get_crit_attack(self))
+                    + (Attack.damage * Attack.get_elemental_bonus(other.element))
+                    )
+                other.set_HP(damage)
+
+        else:
+            print("El ataque ha fallado")
+
+    def is_defeated(self):  # --> Bool
         if self.HP <= 0:
             return True
 
@@ -113,12 +115,6 @@ class Attack:
         "agua": {"planta": 0, "agua": 0, "fuego": 0.2, "neutral": 0},
         "planta": {"planta": 0, "agua": 0.2, "fuego": 0, "neutral": 0},
     }
-
-    def has_enough_energy(self, attacking_pokemon: Pokemon):  # -> Bool
-        if attacking_pokemon.energy_points >= self.energy_cost:
-            return True
-        else:
-            False
 
     def is_successful_attack(self):  # --> bool
 
@@ -166,7 +162,5 @@ class PokemonTrainer:
             pokemon_defeated = self.pokemon_team.pop(defeated_indice)
             self.defeated_pokemon.append(pokemon_defeated)
 
-            return self.pokemon_team, self.defeated_pokemon
-
         else:
-            return self.pokemon_team, self.defeated_pokemon
+            None
