@@ -60,7 +60,7 @@ class Pokemon:
 
         if Attack.is_successful_attack():
 
-            print("El ataque ha impactado")
+            print("El ataque ha impactado con exito")
 
             if other.is_defending:
 
@@ -69,6 +69,7 @@ class Pokemon:
                     ))
                     # Esto significa que other.HP perderá solo el 60% del daño calculado originalmente si other.is_defending = True
                 other.set_HP(damage)
+                print(f"\n{other.name} ha recibido {damage} puntos de daño")
 
 
             else:
@@ -79,6 +80,7 @@ class Pokemon:
                     + (Attack.damage * Attack.get_elemental_bonus(other.element))
                     )
                 other.set_HP(damage)
+                print(f"\n{other.name} ha recibido {damage} puntos de daño")
 
         else:
             print("El ataque ha fallado")

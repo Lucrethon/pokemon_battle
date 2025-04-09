@@ -25,19 +25,39 @@ def turn(player: models.PokemonTrainer, oposing_pokemon: models.Pokemon):
         match select:
 
             case 1:
-                print(f"\n{current_pokemon.name} tiene {current_pokemon.energy_points} puntos de energia.")
                 
-                #elegir ataque
-                u.desplegar_lista(current_pokemon.attacks)
-                select_attack = u.numberInput("\nSelecciona el ataque que quieres realizar:")
+                while True:
                 
-                if 0 <= select_attack - 1 < len(current_pokemon.attacks):
-                    current_attack = current_pokemon.attacks[select_attack-1]
-                    if current_pokemon.has_enough_energy(current_attack): #comprobrar energia
-                        current_pokemon.attack(oposing_pokemon, current_attack) #atacar
+                    print(f"\n{current_pokemon.name} tiene {current_pokemon.energy_points} puntos de energia.")
+                    print("\n1. Elegir ataque")
+                    print("\n2. Volver al menu principal")
                     
-                    else:
-                        print("No tienes suficiente energia para realizar este ataque. Por favor elige otro")
+                    select = u.numberInput("\nElige tu accion: ")
+                    
+                    match select: 
+                        
+                        case 1: 
+                    
+                            #elegir ataque
+                            u.desplegar_lista(current_pokemon.attacks)
+                            select_attack = u.numberInput("\nSelecciona el ataque que quieres realizar:")
+                            
+                            if 0 <= select_attack - 1 < len(current_pokemon.attacks):
+                                current_attack = current_pokemon.attacks[select_attack-1]
+                                if current_pokemon.has_enough_energy(current_attack): #comprobrar energia
+                                    print(f"\n{current_pokemon.name} va a realizar {current_attack.name}")
+                                    current_pokemon.attack(oposing_pokemon, current_attack) #atacar
+                                    break
+                                
+                                else:
+                                    print("No tienes suficiente energia para realizar este ataque. Por favor elige otro")
+                        
+                        case 2: 
+                            break
+                        
+                        case _: 
+                            print("Por favor introduce una opcion valida")
+                        
 
             case 2:
                 current_pokemon.defend()
@@ -45,7 +65,7 @@ def turn(player: models.PokemonTrainer, oposing_pokemon: models.Pokemon):
                 break
 
             case 3:               
-                a, b = current_pokemon.rest()
+                current_pokemon.rest()
                 print(f"\n{current_pokemon.name} esta descansando.")
                 break
 
@@ -53,6 +73,7 @@ def turn(player: models.PokemonTrainer, oposing_pokemon: models.Pokemon):
             
             case 4: 
                 choose_pokemon(player)
+                print(f"\n{player.name} ha cambiado a {choose_pokemon(player)}")
                 break
 
             case _:
@@ -122,7 +143,7 @@ def choose_pokemon(player: models.PokemonTrainer):
             current_pokemon = player.pokemon_team[seleccion-1]
             player.current_pokemon = current_pokemon.name
             print(f"\n<{player.name} ha elegido a {current_pokemon.name}!")
-            return player
+            return current_pokemon.name
 
         else:
             print("Ese numero no esta en tu lista. Intentalo de nuevo")
