@@ -19,11 +19,8 @@ class Pokemon:
     def __repr__(self):
         return f"\nNombre: {self.name} \nElemento: {self.element} \nPuntos de vida: {self.HP} \nProbabilidad de ataque critico: {self.crit_rate} \nBonificador de ataque critico: {self.crit_damage}"  # \nAtaques: \n{self.attacks}"
 
-    def has_enough_energy(self, attack: Attack):  # -> Bool
-        if self.energy_points >= attack.energy_cost:
-            return True
-        else:
-            False
+    def has_enough_energy(self, attack: Attack)-> bool:
+        return self.energy_points >= attack.energy_cost
 
     def get_crit_attack(self):
 
@@ -80,12 +77,8 @@ class Pokemon:
         else:
             print("El ataque ha fallado")
 
-    def is_defeated(self):  # --> Bool
-        if self.HP <= 0:
-            return True
-
-        else:
-            return False
+    def is_defeated(self) -> bool:  
+        return self.HP <= 0
     
     def has_elemental_weakness(self, attack: Attack) -> bool:
         return (
@@ -124,15 +117,12 @@ class Attack:
         "planta": {"planta": 0, "agua": 0.2, "fuego": 0, "neutral": 0},
     }
 
-    def is_successful_attack(self):  # --> bool
+    def is_successful_attack(self) -> bool:  
 
         value = random.random(0, 1)
 
-        if value <= self.success_rate:
-            return True
-        else:
-            return False
-
+        return value <= self.success_rate
+    
     def get_elemental_bonus(self, defender_pokemon: Pokemon):
 
         if defender_pokemon.is_defending == False:
@@ -156,11 +146,11 @@ class PokemonTrainer:
         self.is_first_player = False
         self.current_pokemon = None
 
-    def defeated_pokemon_list(self):
+    def set_defeated_pokemon_list(self):
 
         # indices = [i for i, x in enumerate(array) if x > 3]
         defeated_indice = [
-            i for i, pokemon in enumerate(self.pokemon_team) if pokemon.defeated()
+            i for i, pokemon in enumerate(self.pokemon_team) if pokemon.is_defeated()
         ]  # -> Indice
 
         if defeated_indice:
