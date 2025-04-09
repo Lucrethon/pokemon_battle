@@ -17,18 +17,18 @@ def run_game():
 
     # Elegir primer pokemon de batalla utilizando atributo de clase PokemonTrainer
 
-    g.choose_pokemon(player1)
-    g.choose_pokemon(player2)
+    current_pokemon_player1 = g.choose_pokemon(player1)
+    current_pokemon_player2 =g.choose_pokemon(player2)
     
 
-    while len(player1.pokemon_team) == 0 or len(player2.pokemon_team) == 0:
+    while len(player1.defeated_pokemon) == 3 or len(player1.defeated_pokemon) == 3:
         
         if player1.is_first_player:
             print(f"\nTurno de {player1.name}:")
-            #g.turn(player1, )
+            g.turn(player1, current_pokemon_player2)
         else:
             print(f"\nTurno de {player2.name}:")
-            #g.turn(player2)
+            g.turn(player2, current_pokemon_player1)
 
         os.system("clear")
         

@@ -9,7 +9,7 @@ import main
 
 def turn(player: models.PokemonTrainer, oposing_pokemon: models.Pokemon):
         
-    while True:
+    
         
         #generador: x for x in lista if x == valor (Produce los valores uno a uno)(iterador)
         #next sintaxis: next(iterador, valor_por_defecto) --> Devuelve el siguiente elemento del iterador
@@ -20,7 +20,7 @@ def turn(player: models.PokemonTrainer, oposing_pokemon: models.Pokemon):
             print(f"\n{current_pokemon.name} ha sido derrotado. Por favor elige tu siguiente pokemon:")
             choose_pokemon(player)
         else:
-            continue
+            None
 
         print("1. Atacar")
         print("2. Defenderse")
@@ -75,24 +75,23 @@ def turn(player: models.PokemonTrainer, oposing_pokemon: models.Pokemon):
             case 2:
                 current_pokemon.defend()
                 print(f"\n{current_pokemon.name} se esta defendiendo.")
-                break
+                
 
             case 3:               
                 current_pokemon.rest()
                 print(f"\n{current_pokemon.name} esta descansando.")
-                break
+                
 
                 # descansar
             
             case 4: 
                 choose_pokemon(player)
                 print(f"\n{player.name} ha cambiado a {choose_pokemon(player).name}")
-                break
+                
 
             case _:
                 print("\nOpcion no valida. Por favor intente de nuevo")
 
-        return select
 
 
 # Elegir equipo
