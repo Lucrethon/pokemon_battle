@@ -16,11 +16,8 @@ def numberInput(message):
 
 def stringInput(message):
 
-    try:
-        var = str(input(message))
-    except ValueError as error:
-        print("\nHas introducido un caracter invalido. Por favor intentalo de nuevo")
-        print(error)
+    var = input(message)
+
     return var
 
 
