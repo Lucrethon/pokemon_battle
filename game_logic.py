@@ -9,6 +9,8 @@ import main
 
 def turn(player: models.PokemonTrainer, oposing_pokemon: models.Pokemon):
     
+    player.set_defeated_pokemon_list()
+    
     while True:
         
         #generador: x for x in lista if x == valor (Produce los valores uno a uno)(iterador)
@@ -44,9 +46,15 @@ def turn(player: models.PokemonTrainer, oposing_pokemon: models.Pokemon):
                             
                             if 0 <= select_attack - 1 < len(current_pokemon.attacks):
                                 current_attack = current_pokemon.attacks[select_attack-1]
+                                
                                 if current_pokemon.has_enough_energy(current_attack): #comprobrar energia
                                     print(f"\n{current_pokemon.name} va a realizar {current_attack.name}")
                                     current_pokemon.attack(oposing_pokemon, current_attack) #atacar
+                                    
+                                    if oposing_pokemon.is_defeated: 
+                                        print(f"\n{current_pokemon.name} ha derrotado a {oposing_pokemon.name}")
+                                    else: 
+                                        None
                                     break
                                 
                                 else:
