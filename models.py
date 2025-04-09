@@ -1,4 +1,5 @@
 from __future__ import annotations
+import game_logic as g
 
 import random
 
@@ -85,6 +86,13 @@ class Pokemon:
 
         else:
             return False
+    
+    def has_elemental_weakness(self, attack: Attack) -> bool:
+        return (
+            (attack.elemental_effect == "agua" and self.element == "fuego") or
+            (attack.elemental_effect == "planta" and self.element == "agua") or
+            (attack.elemental_effect == "fuego" and self.element == "planta")
+        )
 
 
 class Attack:
@@ -127,13 +135,11 @@ class Attack:
 
     def get_elemental_bonus(self, defender_pokemon: Pokemon):
 
-        if defender_pokemon.defend == False:
+        if defender_pokemon.is_defending == False:
             if self.elemental_effect == "ninguno":
                 return 0
             else:
-                bonus_elemental = Attack.elemental_bonus.get(
-                    self.elemental_effect, {}
-                ).get(defender_pokemon.element)
+                bonus_elemental = 0.2 if defender_pokemon.has_elemental_weakness else 0
 
                 return bonus_elemental
 
