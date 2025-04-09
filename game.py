@@ -13,12 +13,10 @@ def run_game():
 
     print("\n!Que comience el duelo!")
 
-    # Elegir primer pokemon de batalla
-    # Utilizar atributo de clase PokemonTrainer
+    # Elegir primer pokemon de batalla utilizando atributo de clase PokemonTrainer
 
-
-    # g.elegir_pokemon(jugador1, pokemon_en_juego1)
-    # g.elegir_pokemon(jugador2, pokemon_en_juego2)
+    g.choose_pokemon(player1)
+    g.choose_pokemon(player2)
 
     while True:
         if player1.is_first_player:

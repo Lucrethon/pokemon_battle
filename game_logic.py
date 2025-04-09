@@ -104,16 +104,17 @@ def choose_pokemon_team(
     return team_player1, team_player2
 
 
-def choose_pokemon(player: models.PokemonTrainer, pokemon_en_juego):
+def choose_pokemon(player: models.PokemonTrainer):
     while True:
 
         u.desplegar_lista(player.pokemon_team)
         seleccion = u.numberInput("Elige tu siguiente pokemon:")
 
         if 0 <= seleccion - 1 < len(player.pokemon_team):
-            pokemon_en_juego = jugador.pokemon_team[seleccion]
-            print(f"\n<{jugador.name} ha elegido a {pokemon_en_juego.name}!")
-            return pokemon_en_juego
+            current_pokemon = player.pokemon_team[seleccion]
+            player.current_pokemon = current_pokemon.name
+            print(f"\n<{player.name} ha elegido a {current_pokemon.name}!")
+            return player
 
         else:
             print("Ese numero no esta en tu lista. Intentalo de nuevo")
