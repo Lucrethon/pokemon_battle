@@ -2,20 +2,7 @@ import utils as u
 import models
 import os
 import random
-import models as m
-import json
-import functions as f
-from pathlib import Path
-
-
-# importar Json
-
-file_path = Path(__file__).parent / "pokemon_list.json"
-
-with open(file_path, mode="r") as file:
-    pokemons = json.load(file)
-
-pokemon_list = f.create_pokemon_objects(pokemons)
+import main
 
 # turnos
 
@@ -151,20 +138,21 @@ def initial_setup():
 
     print("\nEl primero en comenzar elegir su equipo Pokemon es... ")
 
-    name_1st_shift = random.choice(players)
-    print(f"\n¡{name_1st_shift}!")
+    name_1st_turn = random.choice(players)
+    print(f"\n¡{name_1st_turn}!")
 
     # variable = valor_si_verdadero if condición else valor_si_falso
-    name_2nd_shift = players[0] if name_1st_shift == players[1] else players[1]
+    name_2nd_turn = players[0] if name_1st_turn == players[1] else players[1]
 
     # Elegir equipos
 
     team_player1, team_player2 = choose_pokemon_team(
-        name_1st_shift, name_2nd_shift, pokemon_list
+        name_1st_turn, name_2nd_turn, main.init_app()
     )
 
-    player1 = m.PokemonTrainer(name_1st_shift, team_player1)
-    player2 = m.PokemonTrainer(name_2nd_shift, team_player2)
+    player1 = models.PokemonTrainer(name_1st_turn, team_player1)
+    player2 = models.PokemonTrainer(name_2nd_turn, team_player2)
     player1.is_first_player = True
     
     return player1, player2
+

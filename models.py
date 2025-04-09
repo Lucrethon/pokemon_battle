@@ -1,6 +1,4 @@
 from __future__ import annotations
-import game_logic as g
-
 import random
 
 
@@ -111,11 +109,6 @@ class Attack:
     def __repr__(self):
         return f"\nNombre: {self.name} \nDescripcion: {self.description} \nCosto de Energia: {self.energy_cost} \nProbabilidad de impacto: {self.success_rate} \nDaño: {self.damage} \nEfecto Elemental: {self.elemental_effect} \nEfecto Especial: {self.special_effect}"
 
-    elemental_bonus = {
-        "fuego": {"planta": 0.2, "agua": 0, "fuego": 0, "neutral": 0},
-        "agua": {"planta": 0, "agua": 0, "fuego": 0.2, "neutral": 0},
-        "planta": {"planta": 0, "agua": 0.2, "fuego": 0, "neutral": 0},
-    }
 
     def is_successful_attack(self) -> bool:  
 
