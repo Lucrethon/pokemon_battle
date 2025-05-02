@@ -47,11 +47,10 @@ def turn(player: models.PokemonTrainer, oposing_pokemon: models.Pokemon):
                     
                             #elegir ataque
                             u.desplegar_lista(current_pokemon.attacks)
-                            select_attack = u.numberInput("\nSelecciona el ataque que quieres realizar:")
+                            select_attack = u.numberInput("\nSelecciona el ataque que quieres realizar: ")
                             
                             if 0 <= select_attack - 1 < len(current_pokemon.attacks):
                                 current_attack = current_pokemon.attacks[select_attack-1]
-                                
                                 if current_pokemon.has_enough_energy(current_attack): #comprobrar energia
                                     print(f"\n{current_pokemon.name} va a realizar {current_attack.name}")
                                     current_pokemon.attack(oposing_pokemon, current_attack) #atacar
@@ -153,10 +152,10 @@ def choose_pokemon(player: models.PokemonTrainer):
         seleccion = u.numberInput(f"\n{player.name}, elige tu siguiente pokemon:")
 
         if 0 <= seleccion - 1 < len(player.pokemon_team):
-            current_pokemon = player.pokemon_team[seleccion-1]
-            player.current_pokemon = current_pokemon.name
-            print(f"\n{player.name} ha elegido a {current_pokemon.name}!")
-            return current_pokemon
+            player_current_pokemon = player.pokemon_team[seleccion-1]
+            player.current_pokemon = player_current_pokemon.name
+            print(f"\n{player.name} ha elegido a {player_current_pokemon.name}!")
+            return player_current_pokemon
 
         else:
             print("Ese numero no esta en tu lista. Intentalo de nuevo")

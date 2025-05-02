@@ -21,7 +21,10 @@ def run_game():
     current_pokemon_player2 =g.choose_pokemon(player2)
     
 
-    while len(player1.defeated_pokemon) == 3 or len(player1.defeated_pokemon) == 3:
+    while len(player1.pokemon_team) > 0 and len(player2.pokemon_team) > 0:
+        #si se utilizara or en vez de and aqui, seria incorrecto porque seria "sigue el juego mientras al menos uno de los jugadores tenga Pokémon"
+        #si uno de los dos ya perdió, el juego seguiría ejecutando turnos innecesariamente.
+        #Lo correcto sería que el juego continúe mientras ambos tengan Pokémon disponibles
         
         if player1.is_first_player:
             print(f"\nTurno de {player1.name}:")
@@ -32,6 +35,8 @@ def run_game():
 
         os.system("clear")
         
-    winner = player1.name if len(player1.pokemon_team) == 0 else player2.name
-    
+    winner = player1.name if len(player1.defeated_pokemon) == 3 else player2.name
+        
     print(f"\nEl duelo ha terminado. El ganador es {winner}!")
+    return winner
+    

@@ -30,7 +30,7 @@ class Pokemon:
 
     def get_crit_attack(self):
 
-        value = random.random(0, 1)
+        value = random.random()
 
         if value <= self.crit_rate:
             return self.crit_damage
@@ -58,14 +58,14 @@ class Pokemon:
 
         self.energy_points -= attack.energy_cost
 
-        if Attack.is_successful_attack():
+        if attack.is_successful_attack():
 
             print("El ataque ha impactado con exito")
 
             if other.is_defending:
 
                 damage = - (0.6 * (
-                    Attack.damage + (Attack.damage * Pokemon.get_crit_attack(self))
+                    attack.damage + (attack.damage * Pokemon.get_crit_attack(self))
                     ))
                     # Esto significa que other.HP perderá solo el 60% del daño calculado originalmente si other.is_defending = True
                 other.set_HP(damage)
@@ -75,9 +75,9 @@ class Pokemon:
             else:
 
                 damage = -(
-                    Attack.damage
-                    + (Attack.damage * Pokemon.get_crit_attack(self))
-                    + (Attack.damage * Attack.get_elemental_bonus(other.element))
+                    attack.damage
+                    + (attack.damage * Pokemon.get_crit_attack(self))
+                    + (attack.damage * attack.get_elemental_bonus(other))
                     )
                 other.set_HP(damage)
                 print(f"\n{other.name} ha recibido {damage} puntos de daño")
@@ -122,13 +122,14 @@ class Attack:
 
     def is_successful_attack(self) -> bool:  
 
-        value = random.random(0, 1)
+        value = random.random()
 
         return value <= self.success_rate
     
     def get_elemental_bonus(self, defender_pokemon: Pokemon):
+        
 
-        if defender_pokemon.is_defending == False:
+        if not defender_pokemon.is_defending:
             if self.elemental_effect == Elements.ninguno:
                 return 0
             else:
