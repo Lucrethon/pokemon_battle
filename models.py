@@ -164,3 +164,10 @@ class PokemonTrainer:
 
         else:
             None
+    
+    
+    def set_is_first_player(self):
+        if self.is_first_player == True: 
+            self.is_first_player == False
+        else:
+            self.is_first_player == True

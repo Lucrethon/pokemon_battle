@@ -24,3 +24,11 @@ def stringInput(message):
 def desplegar_lista(lista):
     for indice, elemento in enumerate(lista, start=1):
         print(f"{indice}: {elemento}")
+
+
+# def is_between_number(select, list):
+    
+#         if select-1 > 0 and select-1 <= len(list): 
+#             True
+#         else: 
+#             print("Por favor introduce una opcion valida")

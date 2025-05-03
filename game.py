@@ -29,10 +29,12 @@ def run_game():
         if player1.is_first_player:
             print(f"\nTurno de {player1.name}:")
             g.turn(player1, current_pokemon_player2)
+            player1.set_is_first_player()
         else:
             print(f"\nTurno de {player2.name}:")
             g.turn(player2, current_pokemon_player1)
-
+            
+        pause = input()
         os.system("clear")
         
     winner = player1.name if len(player1.defeated_pokemon) == 3 else player2.name

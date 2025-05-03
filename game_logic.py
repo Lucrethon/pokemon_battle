@@ -49,7 +49,8 @@ def turn(player: models.PokemonTrainer, oposing_pokemon: models.Pokemon):
                             u.desplegar_lista(current_pokemon.attacks)
                             select_attack = u.numberInput("\nSelecciona el ataque que quieres realizar: ")
                             
-                            if 0 <= select_attack - 1 < len(current_pokemon.attacks):
+                            if select_attack > 0 and select_attack-1 <= len(current_pokemon.attacks): 
+                            
                                 current_attack = current_pokemon.attacks[select_attack-1]
                                 if current_pokemon.has_enough_energy(current_attack): #comprobrar energia
                                     print(f"\n{current_pokemon.name} va a realizar {current_attack.name}")
@@ -140,6 +141,8 @@ def choose_pokemon_team(
             else team_player1
         )
         counter += 1
+    
+    os.system("clear")
 
     return team_player1, team_player2
 
