@@ -13,15 +13,17 @@ def turn(player: models.PokemonTrainer, oposing_pokemon: models.Pokemon):
         
         #generador: x for x in lista if x == valor (Produce los valores uno a uno)(iterador)
         #next sintaxis: next(iterador, valor_por_defecto) --> Devuelve el siguiente elemento del iterador
-        current_pokemon = next((pokemon for pokemon in player.pokemon_team if pokemon.name == player.current_pokemon))
+        #current_pokemon = next((pokemon for pokemon in player.pokemon_team if pokemon.name == player.current_pokemon))
+        #bueno saberlo para que con una caracteristica de un objeto, puedo "traer" el objeto completo
         
-        if current_pokemon.is_defeated():
+        if player.current_pokemon.is_defeated():
             player.set_defeated_pokemon_list()
-            print(f"\n{current_pokemon.name} ha sido derrotado. Por favor elige tu siguiente pokemon:")
+            print(f"\n{player.current_pokemon.name} ha sido derrotado. Por favor elige tu siguiente pokemon: ")
             choose_pokemon(player)
         else:
             None
 
+        
         print("1. Atacar")
         print("2. Defenderse")
         print("3. Descansar")
@@ -35,9 +37,9 @@ def turn(player: models.PokemonTrainer, oposing_pokemon: models.Pokemon):
                 
                 while True:
                 
-                    print(f"\n{current_pokemon.name} tiene {current_pokemon.energy_points} puntos de energia.")
-                    print("\n1. Elegir ataque")
-                    print("\n2. Volver al menu principal")
+                    print(f"\n{player.current_pokemon.name} tiene {player.current_pokemon.energy_points} puntos de energia.")
+                    print("1. Elegir ataque")
+                    print("2. Volver al menu principal")
                     
                     select = u.numberInput("\nElige tu accion: ")
                     
@@ -46,24 +48,25 @@ def turn(player: models.PokemonTrainer, oposing_pokemon: models.Pokemon):
                         case 1: 
                     
                             #elegir ataque
-                            u.desplegar_lista(current_pokemon.attacks)
+                            u.desplegar_lista(player.current_pokemon.attacks)
                             select_attack = u.numberInput("\nSelecciona el ataque que quieres realizar: ")
                             
-                            if select_attack > 0 and select_attack-1 <= len(current_pokemon.attacks): 
+                            if select_attack > 0 and select_attack-1 <= len(player.current_pokemon.attacks): 
                             
-                                current_attack = current_pokemon.attacks[select_attack-1]
-                                if current_pokemon.has_enough_energy(current_attack): #comprobrar energia
-                                    print(f"\n{current_pokemon.name} va a realizar {current_attack.name}")
-                                    current_pokemon.attack(oposing_pokemon, current_attack) #atacar
+                                current_attack = player.current_pokemon.attacks[select_attack-1]
+                                if player.current_pokemon.has_enough_energy(current_attack): #comprobrar energia
+                                    print(f"\n{player.current_pokemon.name} va a realizar {current_attack.name}")
+                                    player.current_pokemon.attack(oposing_pokemon, current_attack) #atacar
                                     
-                                    if oposing_pokemon.is_defeated: 
-                                        print(f"\n{current_pokemon.name} ha derrotado a {oposing_pokemon.name}")
-                                    else: 
-                                        None
                                     break
                                 
                                 else:
                                     print("No tienes suficiente energia para realizar este ataque. Por favor elige otro")
+                            
+                            if oposing_pokemon.is_defeated: 
+                                print(f"\n{player.current_pokemon.name} ha derrotado a {oposing_pokemon.name}")
+                            else: 
+                                None
                         
                         case 2: 
                             break
@@ -73,20 +76,21 @@ def turn(player: models.PokemonTrainer, oposing_pokemon: models.Pokemon):
                         
 
             case 2:
-                current_pokemon.defend()
-                print(f"\n{current_pokemon.name} se esta defendiendo.")
+                player.current_pokemon.defend()
+                print(f"\n{player.current_pokemon.name} se esta defendiendo.")
                 
 
             case 3:               
-                current_pokemon.rest()
-                print(f"\n{current_pokemon.name} esta descansando.")
+                player.current_pokemon.rest()
+                print(f"\n{player.current_pokemon.name} esta descansando.")
                 
 
                 # descansar
             
             case 4: 
                 choose_pokemon(player)
-                print(f"\n{player.name} ha cambiado a {choose_pokemon(player).name}")
+                print(f"\n{player.name} ha cambiado a {player.current_pokemon.name}")
+        
                 
 
             case _:
@@ -152,13 +156,13 @@ def choose_pokemon(player: models.PokemonTrainer):
         
         print(f"\nEquipo de {player.name}:")
         u.desplegar_lista(player.pokemon_team)
-        seleccion = u.numberInput(f"\n{player.name}, elige tu siguiente pokemon:")
+        seleccion = u.numberInput(f"\n{player.name}, elige tu siguiente pokemon: ")
 
         if 0 <= seleccion - 1 < len(player.pokemon_team):
             player_current_pokemon = player.pokemon_team[seleccion-1]
-            player.current_pokemon = player_current_pokemon.name
-            print(f"\n{player.name} ha elegido a {player_current_pokemon.name}!")
-            return player_current_pokemon
+            player.current_pokemon = player_current_pokemon
+            print(f"\n{player.name} ha elegido a {player.current_pokemon.name}!")
+            break
 
         else:
             print("Ese numero no esta en tu lista. Intentalo de nuevo")

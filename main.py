@@ -19,6 +19,8 @@ def init_app():
 
 
 def main_menu():
+    
+    os.system("clear")
 
     while True:
 

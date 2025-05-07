@@ -78,11 +78,3 @@ def create_pokemon_objects(pokemon_json):
 #     return objetos_creados
 
 
-def is_first_player(player1: models.PokemonTrainer, player2: models.PokemonTrainer):
-
-    jugadores = [player1, player2]
-
-    primer_turno = random.choice(jugadores)
-    primer_turno.is_first_player = True
-
-    return primer_turno, primer_turno.is_first_player
