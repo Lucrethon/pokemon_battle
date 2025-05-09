@@ -51,7 +51,7 @@ def attack_flow(player: models.PokemonTrainer, oposing_pokemon: models.Pokemon):
 
 
 
-def turn(player: models.PokemonTrainer, oposing_pokemon: models.Pokemon): # turnos
+def turn(player: models.PokemonTrainer, oposing_pokemon: models.Pokemon): #flujo de turnos
 
     # generador: x for x in lista if x == valor (Produce los valores uno a uno)(iterador)
     # next sintaxis: next(iterador, valor_por_defecto) --> Devuelve el siguiente elemento del iterador
@@ -126,7 +126,7 @@ def turn(player: models.PokemonTrainer, oposing_pokemon: models.Pokemon): # turn
 
 
 
-def choose_pokemon_team(player1, player2, pokemon_list): # Elegir equipo pokemon
+def choose_pokemon_team(player1, player2, pokemon_list): #Elegir equipo pokemon
 
     team_player1 = []
     team_player2 = []

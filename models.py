@@ -157,15 +157,14 @@ class PokemonTrainer:
 
     def set_defeated_pokemon_list(self):
 
-        # indices = [i for i, x in enumerate(array) if x > 3]
-        defeated_indice = [
-            i for i, pokemon in enumerate(self.pokemon_team) if pokemon.is_defeated()
-        ]  # -> Indice
+        #enumerate sintaxis: for indice, elemento in enumerate(lista)
+        #enumerate da el índice de cada elemento y el elemento mismo
+        for i, pokemon in enumerate(self.pokemon_team):
+            
+            if pokemon.is_defeated():
+                pokemon_defeated = self.pokemon_team.pop(i)
+                self.defeated_pokemon.append(pokemon_defeated)
+                break
+            else: 
+                None
 
-        if defeated_indice:
-
-            pokemon_defeated = self.pokemon_team.pop(defeated_indice)
-            self.defeated_pokemon.append(pokemon_defeated)
-
-        else:
-            None

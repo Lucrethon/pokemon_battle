@@ -1,10 +1,8 @@
 import models
 import random
 
-# Crear objetos Attack
 
-
-def create_attack_objects(attack_dicctionary):
+def create_attack_objects(attack_dicctionary): # Crear objetos Attack
 
     attack_list = []
 
@@ -25,10 +23,8 @@ def create_attack_objects(attack_dicctionary):
     return attack_list
 
 
-# Crear objetos Pokemon
 
-
-def create_pokemon_objects(pokemon_json):
+def create_pokemon_objects(pokemon_json): # Crear objetos Pokemon
 
     pokemon_list = []
 
