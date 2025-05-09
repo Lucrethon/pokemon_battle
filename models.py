@@ -2,13 +2,14 @@ from __future__ import annotations
 import random
 from enum import Enum
 
+
 class Elements(Enum):
     agua = 1
     fuego = 2
     hierba = 3
     neutro = 4
     ninguno = 5
-    
+
 
 class Pokemon:
 
@@ -25,7 +26,7 @@ class Pokemon:
     def __repr__(self):
         return f"\nNombre: {self.name} \nElemento: {self.element} \nPuntos de vida: {self.HP} \nProbabilidad de ataque critico: {self.crit_rate} \nBonificador de ataque critico: {self.crit_damage}"  # \nAtaques: \n{self.attacks}"
 
-    def has_enough_energy(self, attack: Attack)-> bool:
+    def has_enough_energy(self, attack: Attack) -> bool:
         return self.energy_points >= attack.energy_cost
 
     def get_crit_attack(self):
@@ -39,18 +40,16 @@ class Pokemon:
 
     def set_HP(self, number):
         self.HP += number
-        
-    
+
     def defend(self):
 
         self.energy_points += 1
         self.is_defending = True
-        
+
     def rest(self):
 
         self.energy_points += 2
         self.is_defending = False
-
 
     def attack(self, other: Pokemon, attack: Attack):
 
@@ -64,13 +63,13 @@ class Pokemon:
 
             if other.is_defending:
 
-                damage = - (0.6 * (
-                    attack.damage + (attack.damage * Pokemon.get_crit_attack(self))
-                    ))
-                    # Esto significa que other.HP perderá solo el 60% del daño calculado originalmente si other.is_defending = True
+                damage = -(
+                    0.6
+                    * (attack.damage + (attack.damage * Pokemon.get_crit_attack(self)))
+                )
+                # Esto significa que other.HP perderá solo el 60% del daño calculado originalmente si other.is_defending = True
                 other.set_HP(damage)
                 print(f"\n{other.name} ha recibido {damage} puntos de daño")
-
 
             else:
 
@@ -78,21 +77,30 @@ class Pokemon:
                     attack.damage
                     + (attack.damage * Pokemon.get_crit_attack(self))
                     + (attack.damage * attack.get_elemental_bonus(other))
-                    )
+                )
                 other.set_HP(damage)
                 print(f"\n{other.name} ha recibido {damage} puntos de daño")
 
         else:
             print("El ataque ha fallado")
 
-    def is_defeated(self) -> bool:  
+    def is_defeated(self) -> bool:
         return self.HP <= 0
-    
+
     def has_elemental_weakness(self, attack: Attack) -> bool:
         return (
-            (attack.elemental_effect == Elements.agua and self.element == Elements.fuego) or
-            (attack.elemental_effect == Elements.hierba and self.element == Elements.agua) or
-            (attack.elemental_effect == Elements.fuego and self.element == Elements.hierba)
+            (
+                attack.elemental_effect == Elements.agua
+                and self.element == Elements.fuego
+            )
+            or (
+                attack.elemental_effect == Elements.hierba
+                and self.element == Elements.agua
+            )
+            or (
+                attack.elemental_effect == Elements.fuego
+                and self.element == Elements.hierba
+            )
         )
 
 
@@ -119,15 +127,13 @@ class Attack:
     def __repr__(self):
         return f"\nNombre: {self.name} \nDescripcion: {self.description} \nCosto de Energia: {self.energy_cost} \nProbabilidad de impacto: {self.success_rate} \nDaño: {self.damage} \nEfecto Elemental: {self.elemental_effect} \nEfecto Especial: {self.special_effect}"
 
-
-    def is_successful_attack(self) -> bool:  
+    def is_successful_attack(self) -> bool:
 
         value = random.random()
 
         return value <= self.success_rate
-    
+
     def get_elemental_bonus(self, defender_pokemon: Pokemon):
-        
 
         if not defender_pokemon.is_defending:
             if self.elemental_effect == Elements.ninguno:
@@ -163,4 +169,3 @@ class PokemonTrainer:
 
         else:
             None
-    

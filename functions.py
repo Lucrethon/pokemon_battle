@@ -76,5 +76,3 @@ def create_pokemon_objects(pokemon_json):
 #             objetos_creados.append(ataque)
 
 #     return objetos_creados
-
-

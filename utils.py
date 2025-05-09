@@ -27,8 +27,8 @@ def desplegar_lista(lista):
 
 
 # def is_between_number(select, list):
-    
-#         if select-1 > 0 and select-1 <= len(list): 
+
+#         if select-1 > 0 and select-1 <= len(list):
 #             True
-#         else: 
+#         else:
 #             print("Por favor introduce una opcion valida")
