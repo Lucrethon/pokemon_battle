@@ -162,7 +162,7 @@ class PokemonTrainer:
         for i, pokemon in enumerate(self.pokemon_team):
             
             if pokemon.is_defeated():
-                pokemon_defeated = self.pokemon_team.pop(i)
+                pokemon_defeated = self.pokemon_team.pop(i) #quitar el primer pokemon que encuentre derrotado dentro de pokemon_team
                 self.defeated_pokemon.append(pokemon_defeated)
                 break
             else: 

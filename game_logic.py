@@ -59,7 +59,6 @@ def turn(player: models.PokemonTrainer, oposing_pokemon: models.Pokemon): #flujo
     # bueno saberlo para que con una caracteristica de un objeto, puedo "traer" el objeto completo
 
     if player.current_pokemon.is_defeated():
-        player.set_defeated_pokemon_list()
         print(
             f"\n{player.current_pokemon.name} ha sido derrotado. Por favor elige tu siguiente pokemon: "
         )
@@ -67,62 +66,62 @@ def turn(player: models.PokemonTrainer, oposing_pokemon: models.Pokemon): #flujo
     else:
         None
 
-        while True: #menu principal de turno
+    while True: #menu principal de turno
 
-            print("1. Atacar")
-            print("2. Defenderse")
-            print("3. Descansar")
-            print("4. Cambiar de pokemon")
+        print("1. Atacar")
+        print("2. Defenderse")
+        print("3. Descansar")
+        print("4. Cambiar de pokemon")
 
-            select = u.numberInput("\nElige tu accion: ")
+        select = u.numberInput("\nElige tu accion: ")
 
-            match select:
+        match select:
 
-                case 1:
-                    
-                    while True: #menu de opcion de ataque 
+            case 1:
+                
+                while True: #menu de opcion de ataque 
 
-                        print(
-                            f"\n{player.current_pokemon.name} tiene {player.current_pokemon.energy_points} puntos de energia."
-                        )
-                        print("1. Elegir ataque")
-                        print("2. Volver al menu principal")
-
-                        select = u.numberInput("\nElige tu accion: ")
-
-                        match select:
-
-                            case 1:
-                                attack_flow(player, oposing_pokemon)
-                                break
-                            
-                            case 2: 
-                                break
-                            
-                            case _:
-                                print("Por favor introduce una opcion valida")
-                    
-                    break
-
-                case 2: #defenderse
-                    player.current_pokemon.defend()
-                    print(f"\n{player.current_pokemon.name} se esta defendiendo.")
-                    break
-
-                case 3: #descansando
-                    player.current_pokemon.rest()
-                    print(f"\n{player.current_pokemon.name} esta descansando.")
-                    break
-
-                case 4: #elegir pokemon
-                    choose_pokemon(player)
                     print(
-                        f"\n{player.name} ha cambiado a {player.current_pokemon.name}"
+                        f"\n{player.current_pokemon.name} tiene {player.current_pokemon.energy_points} puntos de energia."
                     )
-                    break
+                    print("1. Elegir ataque")
+                    print("2. Volver al menu principal")
 
-                case _:
-                    print("\nOpcion no valida. Por favor intente de nuevo")
+                    select = u.numberInput("\nElige tu accion: ")
+
+                    match select:
+
+                        case 1:
+                            attack_flow(player, oposing_pokemon)
+                            break
+                        
+                        case 2: 
+                            break
+                        
+                        case _:
+                            print("Por favor introduce una opcion valida")
+                
+                break
+
+            case 2: #defenderse
+                player.current_pokemon.defend()
+                print(f"\n{player.current_pokemon.name} se esta defendiendo.")
+                break
+
+            case 3: #descansando
+                player.current_pokemon.rest()
+                print(f"\n{player.current_pokemon.name} esta descansando.")
+                break
+
+            case 4: #elegir pokemon
+                choose_pokemon(player)
+                print(
+                    f"\n{player.name} ha cambiado a {player.current_pokemon.name}"
+                )
+                break
+
+            case _:
+                print("\nOpcion no valida. Por favor intente de nuevo")
 
 
 

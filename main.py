@@ -8,7 +8,7 @@ import functions as f
 
 def init_app():
 
-    file_path = Path(__file__).parent / "pokemon_list.json"
+    file_path = Path(__file__).parent / "pokemon_list_test.json"
 
     with open(file_path, mode="r") as file:
         pokemons = json.load(file)
