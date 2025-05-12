@@ -5,48 +5,49 @@ import random
 import main
 
 
+def execute_attack(player: models.PokemonTrainer, oposing_pokemon: models.Pokemon, attack: models.Attack): #ejecutar ataque
+
+        print(
+            f"\n{player.current_pokemon.name} va a realizar {attack.name}"
+        )
+        player.current_pokemon.attack(
+            oposing_pokemon, attack
+        )  # atacar
+
+        if oposing_pokemon.is_defeated():
+            print(
+                f"\n{player.current_pokemon.name} ha derrotado a {oposing_pokemon.name}"
+            ) #comprobar pokemon derrotado
+        else:
+            None
+
+
 def attack_flow(player: models.PokemonTrainer, oposing_pokemon: models.Pokemon): #flujo de ataque
     
-    while True: 
-
+    while True:
         # elegir ataque
         u.desplegar_lista(player.current_pokemon.attacks)
+        print(f"\n{len(player.current_pokemon.attacks)+1}: Salir al menu principal.")
+
         select_attack = u.numberInput(
-            "\nSelecciona el ataque que quieres realizar: "
-        )
-
-        if select_attack > 0 and select_attack <= len(
-            player.current_pokemon.attacks
-        ):
-
-            current_attack = player.current_pokemon.attacks[
-                select_attack - 1
-            ]
-            if player.current_pokemon.has_enough_energy(
-                current_attack
-            ):  # comprobrar energia
-
-                print(
-                    f"\n{player.current_pokemon.name} va a realizar {current_attack.name}"
-                )
-                player.current_pokemon.attack(
-                    oposing_pokemon, current_attack
-                )  # atacar
-
-                if oposing_pokemon.is_defeated():
-                    print(
-                        f"\n{player.current_pokemon.name} ha derrotado a {oposing_pokemon.name}"
-                    ) #comprobar pokemon derrotado
-                else:
-                    None
-
+            "\nSelecciona el ataque que quieres realizar: ")
+        
+        if select_attack == len(player.current_pokemon.attacks)+1:
+            break
+        
+        if select_attack > 0 and select_attack <= len(player.current_pokemon.attacks):
+            
+            current_attack = player.current_pokemon.attacks[select_attack - 1]
+            
+            if player.current_pokemon.has_enough_energy(current_attack):  # comprobrar energia
+                
+                execute_attack(player, oposing_pokemon, current_attack)
                 break
-
+            
             else:
-                print(
-                    "No tienes suficiente energia para realizar este ataque. Por favor elige otro"
-                )
-        else: 
+                print("No tienes suficiente energia para realizar este ataque. Por favor elige otro")
+        
+        else:
             print("Por favor introduce una opcion valida")
 
 
@@ -67,8 +68,11 @@ def turn(player: models.PokemonTrainer, oposing_pokemon: models.Pokemon): #flujo
         None
 
     while True: #menu principal de turno
+        
+        print(f"\n{player.current_pokemon.name} tiene {player.current_pokemon.energy_points} puntos de energia.")
+        print(f"{player.current_pokemon.name} tiene {player.current_pokemon.HP} puntos de vida.")
 
-        print("1. Atacar")
+        print("\n1. Atacar")
         print("2. Defenderse")
         print("3. Descansar")
         print("4. Cambiar de pokemon")
@@ -77,38 +81,17 @@ def turn(player: models.PokemonTrainer, oposing_pokemon: models.Pokemon): #flujo
 
         match select:
 
-            case 1:
-                
-                while True: #menu de opcion de ataque 
-
-                    print(
-                        f"\n{player.current_pokemon.name} tiene {player.current_pokemon.energy_points} puntos de energia."
-                    )
-                    print("1. Elegir ataque")
-                    print("2. Volver al menu principal")
-
-                    select = u.numberInput("\nElige tu accion: ")
-
-                    match select:
-
-                        case 1:
-                            attack_flow(player, oposing_pokemon)
-                            break
-                        
-                        case 2: 
-                            break
-                        
-                        case _:
-                            print("Por favor introduce una opcion valida")
-                
+            case 1: #atacar 
+                attack_flow(player, oposing_pokemon)
                 break
+                
 
             case 2: #defenderse
                 player.current_pokemon.defend()
                 print(f"\n{player.current_pokemon.name} se esta defendiendo.")
                 break
 
-            case 3: #descansando
+            case 3: #descansar
                 player.current_pokemon.rest()
                 print(f"\n{player.current_pokemon.name} esta descansando.")
                 break
@@ -154,6 +137,8 @@ def choose_pokemon_team(player1, player2, pokemon_list): #Elegir equipo pokemon
 
                 print(f"\nEquipo Pokemon de {name_current_turn}")
                 u.desplegar_lista(team_current_turn)
+                pause = input()
+                os.system("clear")
                 break
 
             else:
@@ -199,10 +184,11 @@ def initial_setup(): #Crear objetos PokemonTrainer (jugadores)
 
     players = [name_1, name_2]
 
-    print("\nEl primero en comenzar elegir su equipo Pokemon es... ")
+    print("\nEl primer turno es... ")
 
     name_1st_turn = random.choice(players)
     print(f"\n¡{name_1st_turn}!")
+    pause = input()
 
     # variable = valor_si_verdadero if condición else valor_si_falso
     name_2nd_turn = players[0] if name_1st_turn == players[1] else players[1]

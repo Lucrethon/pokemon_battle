@@ -59,7 +59,7 @@ class Pokemon:
 
         if attack.is_successful_attack():
 
-            print("El ataque ha impactado con exito")
+            print("\nEl ataque ha impactado con exito")
 
             if other.is_defending:
 
@@ -82,7 +82,7 @@ class Pokemon:
                 print(f"\n{other.name} ha recibido {damage} puntos de daño")
 
         else:
-            print("El ataque ha fallado")
+            print("\nEl ataque ha fallado")
 
     def is_defeated(self) -> bool:
         return self.HP <= 0

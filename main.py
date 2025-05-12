@@ -4,6 +4,7 @@ import game
 import json
 from pathlib import Path
 import functions as f
+from game_description import show_game_description
 
 
 def init_app():
@@ -36,9 +37,13 @@ def main_menu():
 
             case 1:
                 print("Descripcion del juego")
+                show_game_description()
+                
 
             case 2:
                 print("Depliegue lista de pokemones existentes")
+                pokemon_list = init_app
+                u.desplegar_lista(pokemon_list)
 
             case 3:
                 game.run_game()

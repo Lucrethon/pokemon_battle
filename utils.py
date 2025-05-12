@@ -26,9 +26,10 @@ def desplegar_lista(lista):
         print(f"{indice}: {elemento}")
 
 
-# def is_between_number(select, list):
+# def select_element(list, select):
+    
+#     if select > 0 and select <= len(list):
+#         return list[select - 1]
+    
+#     raise IndexError(f"Índice de selección inválido: {select}.")
 
-#         if select-1 > 0 and select-1 <= len(list):
-#             True
-#         else:
-#             print("Por favor introduce una opcion valida")

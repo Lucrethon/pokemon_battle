@@ -50,5 +50,6 @@ def run_game():
         os.system("clear")
 
     winner = player1.name if len(player1.pokemon_team) > 0 else player2.name
-    print(f"\nEl duelo ha terminado. El ganador es {winner}!")
+    print(f"\nEl duelo ha terminado. ¡El ganador es {winner}!")
+    pause = input()
     return winner
