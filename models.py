@@ -56,6 +56,8 @@ class Pokemon:
         self.defend = False
 
         self.energy_points -= attack.energy_cost
+        
+        crit_attack_bonus = (Pokemon.get_crit_attack(self) * attack.damage)
 
         if attack.is_successful_attack():
 
@@ -63,23 +65,26 @@ class Pokemon:
 
             if other.is_defending:
 
-                damage = -(
-                    0.6
-                    * (attack.damage + (attack.damage * Pokemon.get_crit_attack(self)))
-                )
+                damage = -(0.6 * (attack.damage + crit_attack_bonus))
                 # Esto significa que other.HP perderá solo el 60% del daño calculado originalmente si other.is_defending = True
                 other.set_HP(damage)
-                print(f"\n{other.name} ha recibido {damage} puntos de daño")
-
+                
+                if crit_attack_bonus > 0: 
+                    print("\n¡Ataque critico!")
+                    print(f"\n{other.name} ha recibido {attack.damage} puntos daño + {attack.damage * crit_attack_bonus} puntos de daño critico")
+                else:
+                    print(f"\n{other.name} ha recibido {-damage} puntos daño")
             else:
-
-                damage = -(
-                    attack.damage
-                    + (attack.damage * Pokemon.get_crit_attack(self))
-                    + (attack.damage * attack.get_elemental_bonus(other))
-                )
+                
+                elemental_bonus = (attack.get_elemental_bonus(other) * attack.damage)
+                damage = -(attack.damage + crit_attack_bonus + elemental_bonus)
                 other.set_HP(damage)
-                print(f"\n{other.name} ha recibido {damage} puntos de daño")
+                
+                if crit_attack_bonus > 0: 
+                    print("\n¡Ataque critico!")
+                    print(f"\n{other.name} ha recibido {attack.damage} puntos daño + {crit_attack_bonus} puntos de daño critico y {elemental_bonus} puntos de daño elemental")
+                else:
+                    print(f"\n{other.name} ha recibido {attack.damage} puntos daño + {elemental_bonus} puntos de daño elemental")
 
         else:
             print("\nEl ataque ha fallado")

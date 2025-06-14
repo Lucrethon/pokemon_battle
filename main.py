@@ -5,6 +5,10 @@ import json
 from pathlib import Path
 import functions as f
 from game_description import show_game_description
+from rich.console import Console
+
+
+
 
 
 def init_app():
@@ -19,17 +23,41 @@ def init_app():
     return pokemon_list
 
 
+
+
+
 def main_menu():
 
-    os.system("clear")
+    u.clear()
 
     while True:
+        
+        #console = Console(width=os.get_terminal_size())
+                
+        terminal_size = os.get_terminal_size()
+        console = Console(width=terminal_size.columns, height=terminal_size.lines)
+        
+        u.lines((terminal_size.lines // 2) - 6)
+        
+        style = "bold white"
+        
+        console.print("██████╗  ██████╗ ██╗  ██╗███████╗███╗   ███╗ ██████╗ ███╗   ██╗    ██████╗ ██╗   ██╗███████╗██╗", style=style, justify="center")
+        console.print("██╔══██╗██╔═══██╗██║ ██╔╝██╔════╝████╗ ████║██╔═══██╗████╗  ██║    ██╔══██╗██║   ██║██╔════╝██║", style=style, justify="center")     
+        console.print("██████╔╝██║   ██║█████╔╝ █████╗  ██╔████╔██║██║   ██║██╔██╗ ██║    ██║  ██║██║   ██║█████╗  ██║", style=style, justify="center")    
+        console.print("██╔═══╝ ██║   ██║██╔═██╗ ██╔══╝  ██║╚██╔╝██║██║   ██║██║╚██╗██║    ██║  ██║██║   ██║██╔══╝  ██║", style=style, justify="center")   
+        console.print("    ██║     ╚██████╔╝██║  ██╗███████╗██║ ╚═╝ ██║╚██████╔╝██║ ╚████║    ██████╔╝╚██████╔╝███████╗███████╗  ", style=style,justify="center")
+        console.print("    ╚═╝      ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝    ╚═════╝  ╚═════╝ ╚══════╝╚══════╝  ", style=style,justify="center")
+        
+        u.lines(3)
 
-        print("\nBienvenido a Pokemon Duel. Elije una opcion:")
-        print("1. Descripcion del juego")
-        print("2. Lista de Pokemones")
-        print("3. Comenzar juego")
-        print("4. Salir")
+        console.print("\n¡Bienvenido a Pokemon Duel! Elije una opcion:", style=style, justify="center")
+        
+        u.lines(2)
+        
+        console.print("1. Descripcion del juego", style=style, justify="center")
+        console.print("2. Lista de Pokemones", style=style, justify="center")
+        console.print("3. Comenzar juego", style=style, justify="center")
+        console.print("4. Salir", style=style, justify="center")
 
         select = u.numberInput("\nElije una de las 4 opciones: ")
 
@@ -38,12 +66,15 @@ def main_menu():
             case 1:
                 print("Descripcion del juego")
                 show_game_description()
+                u.standby()
+                u.clear()
                 
 
             case 2:
-                print("Depliegue lista de pokemones existentes")
-                pokemon_list = init_app
+                print("Pokemones existentes")
+                pokemon_list = init_app()
                 u.desplegar_lista(pokemon_list)
+                u.standby()
 
             case 3:
                 game.run_game()

@@ -1,14 +1,9 @@
-import random
-import os
 import game_logic as g
-import functions as f
 import utils as u
-import models as m
-
 
 def run_game():
 
-    os.system("clear")
+    u.clear()
 
     player1, player2 = g.initial_setup()
 
@@ -18,10 +13,10 @@ def run_game():
 
     # Elegir primer pokemon de batalla utilizando atributo de clase PokemonTrainer
     
-    os.system("clear")
+    u.clear()
     g.choose_pokemon(player1)
-    pause = input()
-    os.system("clear")
+    u.standby()
+    u.clear()
     g.choose_pokemon(player2)
 
     while len(player1.pokemon_team) > 0 and len(player2.pokemon_team) > 0:
@@ -46,10 +41,10 @@ def run_game():
         
         turn_counter += 1
 
-        pause = input()
-        os.system("clear")
+        u.standby()
+        u.clear()
 
     winner = player1.name if len(player1.pokemon_team) > 0 else player2.name
     print(f"\nEl duelo ha terminado. ¡El ganador es {winner}!")
-    pause = input()
+    u.standby()
     return winner
